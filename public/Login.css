@@ -1,0 +1,60 @@
+.login_title {
+    font-size: 40px;
+    padding-top: 140px;
+    text-shadow: 0px 2px 5px #ffffff;
+}
+
+.login_join {
+    font-size: 30px;
+    color: white;
+    text-shadow: 0px 2px 5px #000000;
+}
+
+.in_Email,
+.in_password {
+    display: flex;
+    justify-content: center;
+}
+
+#signUpEmail,
+#signUpPassword {
+    width: 300px;
+    height: 25px;
+    border: 3px solid black;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+::placeholder {
+    /* placeholder 텍스트의 크기와 두께를 설정합니다 */
+    font-size: 14px;
+    color: black;
+    /* 원하는 크기로 설정 */
+    font-weight: 600;
+    /* 원하는 두께로 설정 */
+    /* 기타 스타일링 */
+}
+
+input[type="email"],
+input[type="password"] {
+    outline: none;
+}
+
+.join_btn,
+.login_btn {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    padding-top: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0px 2px 5px #000000;
+}
+
+.google_btn {
+    padding-top: 50px;
+    border: none;
+    background: none;
+}
