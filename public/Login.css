@@ -2,6 +2,13 @@
     font-size: 40px;
     padding-top: 140px;
     text-shadow: 0px 2px 5px #ffffff;
+    margin: 0px;
+}
+
+.form_bg {
+    width: 100vw;
+    height: 100vh;
+    background-repeat: none;
 }
 
 .login_join {

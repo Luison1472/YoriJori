@@ -1,70 +1,49 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
   font-family: 'IM_Hyemin-Bold';
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
 body {
-  background-image: url('/public/img/bg.png');
-  background-size: cover;
-  background-position: center;
   margin: 0;
   padding: 0;
-  /* 기타 스타일링 */
-
-  /* 모바일 사이즈일 때 배경 이미지 조정 */
-  @media (max-width: 1621px) {
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
-  }
 }
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
 
 @font-face {
   font-family: 'IM_Hyemin-Bold';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+.MainPage-background {
+  background-image: url('/public/img/MainPage_background.png');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  /* 화면 너비만큼 요소를 꽉 채움 */
+  height: 100vh;
+  /* 화면 높이만큼 요소를 꽉 채움 */
+  margin: 0;
+  padding: 0;
+}
+
+.login-background,
+.signIn-background {
+  background-image: url('/public/img/bg.png');
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 2021px) {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
 }

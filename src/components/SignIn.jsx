@@ -48,8 +48,8 @@ function SignIn() {
 
   return (
     <>
-      <div className="background">
-        <form>
+      <div>
+        <form className="form_bg">
           <p className="login_title">요리조리<br/>Test.version</p>
           <p className="login_join">회원가입</p>
           <div className="in_Email">
