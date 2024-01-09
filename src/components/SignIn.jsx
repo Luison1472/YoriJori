@@ -48,7 +48,7 @@ function SignIn() {
 
   return (
     <>
-      <div>
+     
         <form className="form_bg">
           <p className="login_title">요리조리<br/>Test.version</p>
           <p className="login_join">회원가입</p>
@@ -70,7 +70,7 @@ function SignIn() {
             <img src="/public/img/web_light_rd_SI@1x.png" alt="구글 로그인" />
           </button>
         </form>
-      </div>
+  
     </>
   );
 }

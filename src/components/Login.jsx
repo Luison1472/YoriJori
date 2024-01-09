@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInAnonymously } from "firebase/auth";
 import { auth } from "/src/firebase-config";
 import "/public/Login.css";
 
@@ -10,11 +10,11 @@ function Login() {
      const navigate = useNavigate();
     //구글 로그인
     function handleGoogleLogin() {
-    const provider = new GoogleAuthProvider(); // provider 구글 설정
-    signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
       .then((data) => {
-        setUserData(data.user); // user data 설정
-        console.log(data); // console에 UserCredentialImpl 출력
+        setUserData(data.user);
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -24,39 +24,49 @@ function Login() {
   //이메일, 비밀번호 로그인
   
 
- const handleLogin = (e) => {
-  e.preventDefault();
-  const email = document.getElementById('signUpEmail').value;
-  const password = document.getElementById('signUpPassword').value;
+  function handleAnonymousLogin() {
+    signInAnonymously(auth)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log('익명 사용자로 로그인:', user);
+        alert('비회원 로그인이 완료되었습니다.');
+        navigate('/MainPage');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error('익명 사용자 로그인 에러:', errorMessage);
+      });
+  }
 
-  if (!email || !password) {
-    alert('이메일과 비밀번호를 모두 입력해주세요.');
-    return;
-   }
-   
-   
+  // 이메일, 비밀번호 로그인
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = document.getElementById('signUpEmail').value;
+    const password = document.getElementById('signUpPassword').value;
 
-  const auth = getAuth();
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const signedInUser = userCredential.user;
-      console.log('로그인 성공:', signedInUser);
-      alert('로그인이 완료되었습니다.');
-      navigate('/MainPage')
+    if (!email || !password) {
+      // 이메일과 비밀번호를 입력하지 않은 경우 익명 로그인 처리
+      handleAnonymousLogin();
+      return;
+    }
 
-    })
-    
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error('로그인 에러:', errorMessage);
-      alert('없는 계정입니다.');
-      alert('회원가입 페이지로 이동합니다.');
-      navigate('/SignIn');
-    });
-};
-
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const signedInUser = userCredential.user;
+        console.log('로그인 성공:', signedInUser);
+        alert('로그인이 완료되었습니다.');
+        navigate('/MainPage');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error('로그인 에러:', errorMessage);
+        alert('없는 계정입니다.');
+        alert('회원가입 페이지로 이동합니다.');
+        navigate('/SignIn');
+      });
+  };
     
 
   return (

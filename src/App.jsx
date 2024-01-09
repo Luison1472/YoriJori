@@ -4,7 +4,7 @@ import Login from './components/Login.jsx';
 import SignIn from './components/SignIn.jsx';
 import MainPage from './components/MainPage.jsx';
 import '/src/App.css';
-
+import Board from './components/board.jsx'
 const App = () => {
   return (
    
@@ -30,6 +30,14 @@ const App = () => {
           element={
             <div className="MainPage-background">
               <MainPage />
+            </div>
+          }
+      />
+       <Route
+          path="/Board"
+          element={
+            <div className="MainPage-background">
+              <Board />
             </div>
           }
         />

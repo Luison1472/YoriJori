@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCva8nsoUdiUZ4UwCSOE4qGsx83WR97qLI",
@@ -12,7 +13,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-export { app, auth };
+const db = getFirestore(app);
+export { db, app, auth };
 
 
 // 회원가입 함수
