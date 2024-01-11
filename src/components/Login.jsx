@@ -7,7 +7,10 @@ import "/public/Login.css";
 function Login() {
 
     const [userData, setUserData] = useState(null);
-     const navigate = useNavigate();
+  const navigate = useNavigate();
+  console.log("userData : ");
+  console.log(userData);
+
     //구글 로그인
     function handleGoogleLogin() {
     const provider = new GoogleAuthProvider();
@@ -22,8 +25,6 @@ function Login() {
   }
 
   //이메일, 비밀번호 로그인
-  
-
   function handleAnonymousLogin() {
     signInAnonymously(auth)
       .then((userCredential) => {

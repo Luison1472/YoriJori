@@ -5,9 +5,11 @@ import SignIn from './components/SignIn.jsx';
 import MainPage from './components/MainPage.jsx';
 import '/src/App.css';
 import Board from './components/board.jsx'
+import { UserProvider } from './components/UserContext.jsx';
+import MyPage from './components/myPage.jsx';
 const App = () => {
   return (
-   
+   <UserProvider>
       <Routes>
         <Route
           path="/"
@@ -41,7 +43,16 @@ const App = () => {
             </div>
           }
         />
+        <Route
+          path="/myPage"
+          element={
+            <div className="MainPage-background">
+              <MyPage />
+            </div>
+          }
+        />
       </Routes>
+   </UserProvider>
  
   );
 };

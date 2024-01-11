@@ -1,12 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-import { db } from "/src/firebase-config"; 
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { collection, addDoc, getDocs, serverTimestamp } from 'firebase/firestore';
+import { db } from '/src/firebase-config';
+import { UserContext } from './UserContext';
+import '/public/Board.css';
 
-function Board({ isUserLoggedIn }) {
+function Board() {
+ const { isUserLoggedIn } = useContext(UserContext);
   const [nickname, setNickname] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const navigate = useNavigate();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('isUserLoggedIn:', isUserLoggedIn);
+    if (!isUserLoggedIn) {
+      alert('로그인이 필요한 서비스입니다.');
+      navigate('/MainPage');
+      return;
+    }
+
+    try {
+      const currentDate = new Date();
+      const formattedDate = `${currentDate.getFullYear()}/${currentDate.getMonth() + 1}/${currentDate.getDate()}`;
+      
+      await addDoc(collection(db, 'posts'), {
+        nickname,
+        title,
+        content,
+        date: formattedDate,
+      });
+      alert('게시물이 성공적으로 작성되었습니다!');
+      setNickname('');
+      setTitle('');
+      setContent('');
+    } catch (error) {
+      console.error('게시물을 작성하는 동안 오류가 발생했습니다:', error);
+    }
+  };
 
   const fetchData = async () => {
     try {
@@ -27,7 +59,7 @@ function Board({ isUserLoggedIn }) {
   return (
     <>
       {/* 폼 */}
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={nickname}
@@ -47,6 +79,9 @@ function Board({ isUserLoggedIn }) {
         />
         <button type="submit">게시</button>
       </form>
+
+      {/* 데이터 불러오기 버튼 */}
+      <button onClick={fetchData}>데이터 불러오기</button>
     </>
   );
 }

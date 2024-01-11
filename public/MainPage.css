@@ -63,9 +63,44 @@
     border-radius: 20px;
 }
 
-.notice_text {
+.notice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+
+.write_btn {
+    height: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+.free img {
+    width: 20px;
+}
+
+.post-item {
+    border-bottom: 1px solid #888888;
+    justify-content: start;
+    display: flex;
+}
+
+.post-list p {
+    font-size: 12px;
+    display: inline;
+    margin: 5px 0px;
+}
+
+.post-header {
     font-size: 13px;
-    width: 200px;
-    height: 300px;
-    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #888888;
+    border-bottom: 1px solid #888888;
+}
+
+.post-header p {
+    margin: 3px 0px;
 }
