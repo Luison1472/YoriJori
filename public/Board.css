@@ -1,0 +1,12 @@
+.nick_input,
+.title_input,
+.content_input {
+    outline: none;
+    border: none;
+}
+
+.nick_input:hover,
+.title_input:hover,
+.content_input:hover {
+    border: 1px solid rgb(156, 204, 233);
+}

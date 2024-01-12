@@ -5,26 +5,26 @@ import { auth } from "/src/firebase-config";
 import "/public/Login.css";
 
 function Login() {
-
-    const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   console.log("userData : ");
   console.log(userData);
 
-    //구글 로그인
-    function handleGoogleLogin() {
+  // 구글 로그인
+  function handleGoogleLogin() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((data) => {
         setUserData(data.user);
-        console.log(data);
+        alert("구글 로그인 완료");
+        navigate('/MainPage');
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  //이메일, 비밀번호 로그인
+  // 이메일, 비밀번호 로그인
   function handleAnonymousLogin() {
     signInAnonymously(auth)
       .then((userCredential) => {
@@ -34,7 +34,6 @@ function Login() {
         navigate('/MainPage');
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         console.error('익명 사용자 로그인 에러:', errorMessage);
       });
@@ -68,32 +67,27 @@ function Login() {
         navigate('/SignIn');
       });
   };
-    
 
   return (
-      <>
-     
-            <form className="form_bg">
-                  <p className="login_title">요리조리<br/>Test.version</p>
-                  <p className="login_join">로그인</p>
-                <div className="in_Email">
-            
-                    <input type="email" id="signUpEmail" placeholder="이메일을 입력하세요" required />
-                </div>
-                  
-                <div className="in_password" >
-                
-                    <input type="password" id="signUpPassword" placeholder="비밀번호를 입력하세요" required />
-          </div>
-          <div>
-                <button className="login_btn"onClick={handleLogin}>입장</button>
-                <Link to="/SignIn"><button className="join_btn" type="button">회원가입</button></Link>
-          </div>
-                  <button className="google_btn" onClick={handleGoogleLogin}>
-      <img src="/public/img/web_light_rd_SI@1x.png" alt="구글 로그인" />
-    </button>
-              </form> 
-   
+    <>
+      <form className="form_bg">
+        <p className="login_title">요리조리<br/>Test.version</p>
+        <p className="login_join">로그인</p>
+        <div className="in_Email">
+          <input type="email" id="signUpEmail" placeholder="이메일을 입력하세요" required />
+        </div>
+        <div className="in_password" >
+          <input type="password" id="signUpPassword" placeholder="비밀번호를 입력하세요" required />
+        </div>
+
+        <div className="login_box">
+          <button className="login_btn" onClick={handleLogin}>입장</button>
+          <Link to="/SignIn"><button className="join_btn" type="button">회원가입</button></Link>
+        <button className="google_btn" onClick={handleGoogleLogin}>
+          <img src="/public/img/web_light_rd_SI@1x.png" alt="구글 로그인" />
+        </button>
+        </div>
+      </form>
     </>
   );
 }
