@@ -1,19 +1,24 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { collection, getDocs, addDoc, query, orderBy } from 'firebase/firestore';
 import { db } from '/src/firebase-config';
 import { UserContext } from './UserContext';
 import '/public/Board.css';
 import Header from './Header.jsx';
 import '/public/MainPage.css';
-
+import ReactQuillComponent from '/src/components/ReactQuillCustom.jsx';
 function Board() {
- const { isUserLoggedIn } = useContext(UserContext);
+  const { isUserLoggedIn } = useContext(UserContext);
   const [nickname, setNickname] = useState('');
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [editorContent, setEditorContent] = useState('');
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
+
+    const handleEditorChange = (value) => {
+    setEditorContent(value);
+  };
 
   const handleMyPageClick = () => {
     if (isUserLoggedIn) {
@@ -46,31 +51,31 @@ function Board() {
     }
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log('isUserLoggedIn:', isUserLoggedIn);
-  if (!isUserLoggedIn) {
-    alert('로그인이 필요한 서비스입니다.');
-    navigate('/MainPage');
-    return;
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('isUserLoggedIn:', isUserLoggedIn);
+    if (!isUserLoggedIn) {
+      alert('로그인이 필요한 서비스입니다.');
+      navigate('/MainPage');
+      return;
+    }
 
     try {
-    await addDoc(collection(db, 'posts'), {
-      nickname,
-      title,
-      content,
-      timestamp: new Date(),  // 수정된 부분
-    });
-    alert('게시물이 성공적으로 작성되었습니다!');
-    setNickname('');
-    setTitle('');
-    setContent('');
-    fetchData(); // 게시글 작성 후 데이터 다시 불러오기
-  } catch (error) {
-    console.error('게시물을 작성하는 동안 오류가 발생했습니다:', error);
-  }
-};
+      await addDoc(collection(db, 'posts'), {
+        nickname,
+        title,
+        content: editorContent,
+        timestamp: new Date(),
+      });
+      alert('게시물이 성공적으로 작성되었습니다!');
+      setNickname('');
+      setTitle('');
+      setEditorContent('');
+      fetchData();
+    } catch (error) {
+      console.error('게시물을 작성하는 동안 오류가 발생했습니다:', error);
+    }
+  };
 
   const fetchData = async () => {
   try {
@@ -78,10 +83,10 @@ function Board() {
     const q = query(boardCollection, orderBy('timestamp', 'desc'));
     const querySnapshot = await getDocs(q);
 
-    const postData = [];
-    querySnapshot.forEach((doc) => {
-      postData.push({ id: doc.id, ...doc.data() });
-    });
+    const postData = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
     setPosts(postData);
   } catch (error) {
@@ -89,17 +94,19 @@ function Board() {
   }
 };
 
-  useEffect(() => {
-    fetchData();
-  }, []); 
+ useEffect(() => {
+  fetchData();
+}, []); 
 
   return (
     <>
        <Header handleMyPageClick={handleMyPageClick} handleLogout={handleLogout} />
       
       <h1>게시글 작성</h1>
-      {/* 폼 */}
+      
       <form onSubmit={handleSubmit}>
+
+        <div className="form_box">
         <input
           className="nick_input"
           type="text"
@@ -115,10 +122,10 @@ function Board() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="제목"
         />
-        <textarea
-          className="content_input"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+        </div>
+        <ReactQuillComponent
+          value={editorContent}
+          onChange={handleEditorChange}
           placeholder="내용"
         />
         <button type="submit">게시</button>

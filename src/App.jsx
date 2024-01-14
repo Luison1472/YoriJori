@@ -10,6 +10,10 @@ import { UserProvider } from './components/UserContext.jsx';
 import MyPage from './components/myPage.jsx';
 
 const App = () => {
+
+  if (typeof global === 'undefined') {
+  window.global = window;
+}
   return (
     <UserProvider>
       <div className="app-wrapper">
