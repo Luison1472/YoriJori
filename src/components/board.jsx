@@ -1,24 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { collection, getDocs, addDoc, query, orderBy } from 'firebase/firestore';
 import { db } from '/src/firebase-config';
 import { UserContext } from './UserContext';
 import '/public/Board.css';
 import Header from './Header.jsx';
-import '/public/MainPage.css';
-import ReactQuillComponent from '/src/components/ReactQuillCustom.jsx';
+import TextEditor from "/src/components/TextEditor";
+import { getAuth, signOut } from 'firebase/auth';
+
 function Board() {
-  const { isUserLoggedIn } = useContext(UserContext);
+ const { isUserLoggedIn } = useContext(UserContext);
   const [nickname, setNickname] = useState('');
   const [title, setTitle] = useState('');
-  const [editorContent, setEditorContent] = useState('');
+  const [content, setContent] = useState('');
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
-    const handleEditorChange = (value) => {
-    setEditorContent(value);
-  };
 
   const handleMyPageClick = () => {
     if (isUserLoggedIn) {
@@ -51,30 +48,34 @@ function Board() {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('isUserLoggedIn:', isUserLoggedIn);
-    if (!isUserLoggedIn) {
-      alert('로그인이 필요한 서비스입니다.');
-      navigate('/MainPage');
-      return;
-    }
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log('isUserLoggedIn:', isUserLoggedIn);
+  if (!isUserLoggedIn) {
+    alert('로그인이 필요한 서비스입니다.');
+    navigate('/MainPage');
+    return;
+  }
 
     try {
-      await addDoc(collection(db, 'posts'), {
-        nickname,
-        title,
-        content: editorContent,
-        timestamp: new Date(),
-      });
-      alert('게시물이 성공적으로 작성되었습니다!');
-      setNickname('');
-      setTitle('');
-      setEditorContent('');
-      fetchData();
-    } catch (error) {
-      console.error('게시물을 작성하는 동안 오류가 발생했습니다:', error);
-    }
+    await addDoc(collection(db, 'posts'), {
+      nickname,
+      title,
+      content,
+      timestamp: new Date(),  // 수정된 부분
+    });
+    alert('게시물이 성공적으로 작성되었습니다!');
+    setNickname('');
+    setTitle('');
+    setContent('');
+    fetchData(); // 게시글 작성 후 데이터 다시 불러오기
+  } catch (error) {
+    console.error('게시물을 작성하는 동안 오류가 발생했습니다:', error);
+  }
+  };
+  
+  const handleGoToMainPage = () => {
+    navigate('/MainPage');
   };
 
   const fetchData = async () => {
@@ -83,10 +84,10 @@ function Board() {
     const q = query(boardCollection, orderBy('timestamp', 'desc'));
     const querySnapshot = await getDocs(q);
 
-    const postData = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const postData = [];
+    querySnapshot.forEach((doc) => {
+      postData.push({ id: doc.id, ...doc.data() });
+    });
 
     setPosts(postData);
   } catch (error) {
@@ -94,18 +95,15 @@ function Board() {
   }
 };
 
- useEffect(() => {
-  fetchData();
-}, []); 
+  useEffect(() => {
+    fetchData();
+  }, []); 
 
   return (
     <>
        <Header handleMyPageClick={handleMyPageClick} handleLogout={handleLogout} />
-      
-      <h1>게시글 작성</h1>
-      
-      <form onSubmit={handleSubmit}>
 
+      <h1>게시글 작성</h1>
         <div className="form_box">
         <input
           className="nick_input"
@@ -113,7 +111,7 @@ function Board() {
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
           placeholder="닉네임"
-          maxLength={2}
+          maxLength={5}
         />
         <input
           className="title_input"
@@ -123,16 +121,28 @@ function Board() {
           placeholder="제목"
         />
         </div>
-        <ReactQuillComponent
-          value={editorContent}
-          onChange={handleEditorChange}
-          placeholder="내용"
-        />
-        <button type="submit">게시</button>
-      </form>
+      <TextEditor setContent={setContent} />
 
-      {/* 데이터 불러오기 버튼 */}
-      <button onClick={fetchData}>데이터 불러오기</button>
+      <div style={{ display: "flex" }}>
+        <div className="ck ck-editor__main" 
+        style={{ width : "100%"}}>
+          <div
+            className="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred"
+          />
+        </div>
+      </div>
+
+       <div className="sub_btn_container">
+        <form onSubmit={handleSubmit}>
+          <button className="sub_btn" type="submit">게시</button>
+        </form>
+      </div>
+
+      <div className="sub_btn_container2">
+        <button className="sub_btn2" onClick={handleGoToMainPage}>나가기</button>
+      </div>
+
+
     </>
   );
 }

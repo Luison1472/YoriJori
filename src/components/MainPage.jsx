@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import '/public/MainPage.css';
 import { UserContext } from './UserContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '/src/firebase-config';
@@ -99,12 +99,15 @@ function MainPage() {
         </div>
 
         <div className="post-list">
-          {posts
-            .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
-            .map((post, index) => (
-              <PostItem key={post.id} post={post} index={index} />
-            ))}
-        </div>
+  {posts
+    .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+    .map((post, index) => (
+      <Link key={post.id} to={`/Notice/${post.id}`}>
+        {/* 클릭 시 해당 글의 상세 페이지로 이동 */}
+        <PostItem key={post.id} post={post} index={index} />
+      </Link>
+    ))}
+</div>
         <div className="pagination">
           <Pagination
             totalPosts={posts.length}
@@ -114,6 +117,7 @@ function MainPage() {
           />
         </div>
       </div>
+
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import '/public/MainPage.css';
+import '/public/Header.css';
+import { Link } from 'react-router-dom';
 
 const Header = ({ handleMyPageClick, handleLogout }) => {
   return (
@@ -11,10 +12,10 @@ const Header = ({ handleMyPageClick, handleLogout }) => {
       </div>
       <div className="mainpg_header">
         <ul className="mainpg_nav">
-          <li>야매요리</li>
-          <li>진심요리</li>
-          <li>자유게시판</li>
-          <li>안내</li>
+          <li><Link to="/yamae">야매요리</Link></li>
+          <li><Link to="/jinsim">진심요리</Link></li>
+          <li><Link to="/jayou">자유게시판</Link></li>
+          <li><Link to="/annae">안내</Link></li>
         </ul>
       </div>
     </div>

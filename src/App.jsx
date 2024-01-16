@@ -8,6 +8,11 @@ import '/src/App.css';
 import Board from './components/board.jsx';
 import { UserProvider } from './components/UserContext.jsx';
 import MyPage from './components/myPage.jsx';
+import Yamae from './components/Yamae.jsx';
+import Jinsim from './components/jinsim.jsx';
+import Jayou from './components/Jayou.jsx';
+import Annae from './components/Annae.jsx';
+import Notice from './components/NoticePage.jsx';
 
 const App = () => {
 
@@ -55,6 +60,46 @@ const App = () => {
             element={
               <div className="MainPage_bg">
                 <MyPage />
+              </div>
+            }
+          />
+          <Route
+            path="/yaMae"
+            element={
+              <div className="MainPage_bg">
+                <Yamae />
+              </div>
+            }
+          />
+          <Route
+            path="/jinsim"
+            element={
+              <div className="MainPage_bg">
+                <Jinsim />
+              </div>
+            }
+          />
+          <Route
+            path="/jayou"
+            element={
+              <div className="MainPage_bg">
+                <Jayou />
+              </div>
+            }
+          />
+          <Route
+            path="/annae"
+            element={
+              <div className="MainPage_bg">
+                <Annae />
+              </div>
+            }
+          />
+          <Route
+            path="/notice/:postId"
+            element={
+              <div className="MainPage_bg">
+                <Notice />
               </div>
             }
           />
