@@ -11,6 +11,7 @@ import Header from './Header.jsx';
 
 function MainPage() {
   const { isUserLoggedIn } = useContext(UserContext);
+  console.log('Is user logged in:', isUserLoggedIn);  
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 12;
@@ -50,12 +51,13 @@ function MainPage() {
   };
 
   const handleWriteButtonClick = () => {
-    if (isUserLoggedIn) {
-      navigate('/Board');
-    } else {
-      alert('로그인이 필요한 기능입니다.');
-    }
-  };
+  if (isUserLoggedIn) {
+    navigate('/Board');
+  } else {
+    alert('로그인이 필요한 기능입니다.');
+    navigate('/MainPage'); // 비로그인 사용자일 경우 메인 페이지로 이동
+  }
+};
 
   const handleLogout = () => {
     const auth = getAuth();
@@ -104,7 +106,7 @@ function MainPage() {
     .map((post, index) => (
       <Link key={post.id} to={`/Notice/${post.id}`}>
         {/* 클릭 시 해당 글의 상세 페이지로 이동 */}
-        <PostItem key={post.id} post={post} index={index} />
+        <PostItem key={post.id} index={index + 1} post={post} showImage={false} nicknameFirst={true} />
       </Link>
     ))}
 </div>

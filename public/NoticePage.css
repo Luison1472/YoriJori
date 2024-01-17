@@ -1,0 +1,152 @@
+.post-item img {
+    max-width: 300px;
+    height: auto;
+
+}
+
+.notice-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notice-content p {
+    display: inline;
+}
+
+.notice-content p:nth-child(1) {
+    display: block;
+    font-size: 14px;
+    margin: 3px 3px;
+}
+
+.notice-content p:nth-child(2) {
+    font-size: 12px;
+    padding-right: 10px;
+    margin: 0px 3px;
+}
+
+.notice-content p:nth-child(3) {
+    font-size: 10px;
+}
+
+.hr1 {
+    width: 100px;
+    border: 1.5px solid rgb(100, 173, 210);
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.notice_header p {
+    margin: 0px;
+    margin-left: 10px;
+    padding-bottom: 5px;
+    font-size: 25px;
+}
+
+.comments-section {
+    position: relative;
+    width: 390px;
+    background-color: rgb(255, 207, 175);
+    /* 적절한 배경색을 지정하세요 */
+    /* 적절한 여백을 지정하세요 */
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+    /* 그림자 효과를 추가하세요 */
+    z-index: 999;
+    border-radius: 20px;
+    height: 287px;
+}
+
+.comment {
+    font-size: 12px;
+    display: grid;
+    grid-template-columns: 60px 320px;
+    grid-template-areas:
+        'nick title';
+}
+
+
+
+.com_name {
+    grid-area: nick;
+    padding-left: 13px;
+}
+
+
+.com_content {
+    font-size: 12px;
+}
+
+.com_name,
+.com_content {
+    margin-bottom: 3px;
+}
+
+
+
+h3 {
+    padding: 3px 2px;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    margin: 5px 10px;
+    font-size: 15px;
+}
+
+.comment-form {
+    position: absolute;
+    bottom: 0px;
+}
+
+.comment-form p {
+    margin: 4px;
+    margin-left: 13px;
+    font-size: 14px;
+}
+
+.comment-form input {
+    width: 365px;
+    margin-left: 10px;
+    height: 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.comment_btn {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: end;
+}
+
+.com_btn {
+    background-color: #fd8e8e;
+    color: white;
+    border-radius: 20px;
+    height: 30px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    outline: none;
+    border: 1px solid #fd8e8e;
+    font-weight: bold;
+}
+
+.comment_pagination {
+    display: flex;
+    justify-content: center;
+
+}
+
+.comment_pagination button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.comment_pagination .active {
+    background-color: hsl(330, 92%, 81%);
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+}

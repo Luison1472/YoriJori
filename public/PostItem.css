@@ -1,0 +1,10 @@
+.hr2 {
+    border: 1px solid rgb(171, 171, 171);
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.img_content {
+    display: block;
+    margin-left: 10px;
+}

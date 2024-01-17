@@ -3,6 +3,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '/public/Board.css';
 
+
 const CKEditorComponent = ({ content, setContent }) => {
     return (
         <div className='ckeditor'>

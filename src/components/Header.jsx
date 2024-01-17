@@ -6,7 +6,7 @@ const Header = ({ handleMyPageClick, handleLogout }) => {
   return (
     <div className="main_pg">
       <div className="InMyPage">
-        <p>요리조리</p>
+        <p><Link to ="/MainPage">요리조리</Link></p>
         <img src="/public/img/mypg.png" alt="마이페이지" onClick={handleMyPageClick} />
         <img src="/public/img/logout.png" alt="로그아웃" onClick={handleLogout} />
       </div>

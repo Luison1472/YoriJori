@@ -24,6 +24,12 @@ body {
   background-image: url(/public/img/MainPage_background.png);
 }
 
+.notice_pg {
+  background-color: white;
+  width: 390px;
+  height: 844px;
+}
+
 html {
   margin: 0;
   padding: 0;

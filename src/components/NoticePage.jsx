@@ -2,16 +2,37 @@ import React, { useEffect, useState } from 'react';
 import Header from './Header.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
-import { collection, doc, getDoc } from 'firebase/firestore';
+import { serverTimestamp, collection, doc, getDoc, query, where,getDocs, addDoc} from 'firebase/firestore';  // query, where, getDocs 추가
 import { db } from '/src/firebase-config';
 import PostItem from '/src/components/PostItem.jsx';
+import '/public/NoticePage.css';
+import Comment from '/src/components/Comment.jsx';
+
+const PAGE_SIZE = 8;
 
 const NoticePage = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
-    const [post, setPost] = useState(null);
-    
-    const fetchData = async () => {
+  const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]); 
+  const [newComment, setNewComment] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const calculateTotalPages = (totalComments) => {
+    return Math.ceil(totalComments / PAGE_SIZE);
+  };
+  useEffect(() => {
+    fetchData();
+    fetchComments();
+  }, [postId, currentPage]);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+
+     const fetchData = async () => {
     try {
       const postDocRef = doc(db, 'posts', postId);
       const postDocSnap = await getDoc(postDocRef);
@@ -29,6 +50,64 @@ const NoticePage = () => {
   useEffect(() => {
     fetchData();
   }, [postId]);
+
+  const fetchComments = async () => {
+  try {
+    const commentsCollectionRef = collection(db, 'comments');
+    const commentsQuery = query(commentsCollectionRef, where('postId', '==', postId));
+    const commentsQuerySnapshot = await getDocs(commentsQuery);
+
+    const fetchedComments = commentsQuerySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    // 댓글을 시간순으로 정렬
+    fetchedComments.sort((b, a) => {
+      const timestampA = a.timestamp ? a.timestamp.toMillis() : 0;
+      const timestampB = b.timestamp ? b.timestamp.toMillis() : 0;
+      return timestampA - timestampB;
+    });
+
+    setComments(fetchedComments);
+    setTotalPages(calculateTotalPages(fetchedComments.length));
+  } catch (error) {
+    console.error('댓글을 불러오는 동안 오류가 발생했습니다:', error);
+  }
+};
+
+  useEffect(() => {
+    fetchData();
+    fetchComments();
+  }, [postId]);
+
+  const handleCommentSubmit = async () => {
+  try {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    let commentUsername = '익명';
+
+    if (user) {
+      commentUsername = user.displayName || '익명';
+    }
+
+    const commentData = {
+      postId,
+      username: commentUsername,
+      content: newComment,
+      timestamp: serverTimestamp(),
+    };
+
+    const commentsCollectionRef = collection(db, 'comments');
+    await addDoc(commentsCollectionRef, commentData);
+
+    fetchComments();
+    setNewComment('');
+  } catch (error) {
+    console.error('댓글을 제출하는 동안 오류가 발생했습니다:', error);
+  }
+};
 
   const handleMyPageClick = () => {
     if (isUserLoggedIn) {
@@ -65,15 +144,58 @@ const NoticePage = () => {
 
   return (
     <>
-          <Header handleMyPageClick={handleMyPageClick} handleLogout={handleLogout} />
-          {post && (
+      <Header handleMyPageClick={handleMyPageClick} handleLogout={handleLogout} />
+      <div className="notice_header">
+        <p>공지사항</p>
+        <div className="hr1">
+        </div>
+      </div>
+      {post && (
         <div className="notice-content">
-          {/* NoticePage에서 필요한 정보를 PostItem으로 전달 */}
-          <PostItem post={post} index={0} />
+         <PostItem post={post} showImage={true} nicknameFirst={false} />
         </div>
       )}
 
-      </>
+        <div className="comments-section">
+        <h3>전체댓글 ({comments.length})</h3>
+       <div className="comments-container">
+          <div className="comments-list">
+            {comments
+              .slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+              .map((comment, index) => (
+                <Comment key={index} comments={comment} />
+              ))}
+          </div>
+          <div className="comment_pagination">
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={page === currentPage ? "active" : ""}
+                >
+                  {page}
+                </button>
+              )
+            )}
+          </div>
+          <div className="comment-form">
+            <p>댓글 작성</p>
+            <input
+              rows="1"
+              placeholder=""
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <div className="comment_btn">
+              <button className="com_btn" onClick={handleCommentSubmit}>
+                댓글 남기기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

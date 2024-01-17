@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import "/public/SignIn.css";
 
@@ -8,7 +8,7 @@ import "/public/SignIn.css";
 function SignIn() {
   const auth = getAuth(); // Firebase auth 객체 가져오기
   const [passwordMatchError, setPasswordMatchError] = useState('');
-
+  const [nickname, setNickname] = useState('');
   const handleSignUp = async (e) => {
     e.preventDefault();
     const email = document.getElementById('signUpEmail').value;
@@ -25,6 +25,7 @@ function SignIn() {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+      await updateProfile(user, { displayName: nickname });
       console.log('회원가입 성공:', user);
       alert('회원가입이 완료되었습니다.'); // 회원가입 완료 알림
       // 회원가입에 성공했을 때.
@@ -60,7 +61,10 @@ function SignIn() {
           </div>
           <div className="in_password">
             <input type="password" id="confirmPassword" placeholder="비밀번호를 확인하세요" required />
-          </div>
+        </div>
+        <div className="in_password">
+          <input type="text" id="nickname" placeholder="닉네임을 입력하세요" value={nickname || ''} onChange={(e) => setNickname(e.target.value)} required maxLength={5} />
+        </div>
             {passwordMatchError && <p className="error">{passwordMatchError}</p>}
           <div className="sign_and_login">
             <button className="sign_in_btn" onClick={handleSignUp}>가입</button>

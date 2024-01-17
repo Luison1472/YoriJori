@@ -9,13 +9,19 @@ import TextEditor from "/src/components/TextEditor";
 import { getAuth, signOut } from 'firebase/auth';
 
 function Board() {
- const { isUserLoggedIn } = useContext(UserContext);
-  const [nickname, setNickname] = useState('');
+ const { isUserLoggedIn, user } = useContext(UserContext);
+ const [nickname, setNickname] = useState(user ? user.displayName : '');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
+   useEffect(() => {
+    // 사용자가 닉네임을 설정했다면 자동으로 채우기
+    if (user && user.displayName) {
+      setNickname(user.displayName);
+    }
+  }, [user]);
 
   const handleMyPageClick = () => {
     if (isUserLoggedIn) {
@@ -96,14 +102,26 @@ function Board() {
 };
 
   useEffect(() => {
+  if (isUserLoggedIn) {
     fetchData();
-  }, []); 
+  }
+}, [isUserLoggedIn]);
 
   return (
     <>
        <Header handleMyPageClick={handleMyPageClick} handleLogout={handleLogout} />
+      <div className="board_sub_header">
+      <p>게시글 작성</p>
+    
+          <form onSubmit={handleSubmit}>
+            <button className="sub_btn" type="submit">게시</button>
+          </form>
+    
+          <button className="sub_btn2" onClick={handleGoToMainPage}>나가기</button>
+       
+      </div>
 
-      <h1>게시글 작성</h1>
+
         <div className="form_box">
         <input
           className="nick_input"
@@ -132,15 +150,7 @@ function Board() {
         </div>
       </div>
 
-       <div className="sub_btn_container">
-        <form onSubmit={handleSubmit}>
-          <button className="sub_btn" type="submit">게시</button>
-        </form>
-      </div>
-
-      <div className="sub_btn_container2">
-        <button className="sub_btn2" onClick={handleGoToMainPage}>나가기</button>
-      </div>
+       
 
 
     </>

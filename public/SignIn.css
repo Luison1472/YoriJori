@@ -12,7 +12,8 @@
 
 #signUpEmail,
 #signUpPassword,
-#confirmPassword {
+#confirmPassword,
+#nickname {
     width: 300px;
     height: 25px;
     border: 3px solid black;
@@ -31,7 +32,8 @@
 }
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"] {
     outline: none;
 }
 

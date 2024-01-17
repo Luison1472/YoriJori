@@ -47,7 +47,7 @@
 
 .post-list .post-item {
     display: grid;
-    grid-template-columns: 35px 35px 170px 60px;
+    grid-template-columns: 35px 50px 155px 60px;
     grid-template-areas: '순서 닉네임 제목 날짜';
     border-bottom: 1px solid #888888;
     color: #000000;
@@ -89,7 +89,7 @@
 
 .post-header {
     display: grid;
-    grid-template-columns: 35px 35px 170px 60px;
+    grid-template-columns: 35px 50px 155px 60px;
     grid-template-areas:
         '순서 닉네임 제목 날짜';
     border-top: 1px solid #888888;
@@ -119,4 +119,8 @@
     background-color: transparent;
     color: #000000;
     border: none;
+}
+
+.post-item.notice-page p:nth-child(2) {
+    order: 1;
 }

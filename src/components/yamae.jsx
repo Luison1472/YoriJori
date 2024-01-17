@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from './Header.jsx';
+import { UserContext } from './UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const yamae = () => {
+
+  const { isUserLoggedIn } = useContext(UserContext);
+   const navigate = useNavigate();
 
   const handleMyPageClick = () => {
     if (isUserLoggedIn) {

@@ -5,27 +5,28 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user && !user.isAnonymous) {
-        // 실제로 로그인된 사용자인 경우
-        setIsUserLoggedIn(true);
-      } else {
-        // 익명으로 로그인된 사용자 또는 로그아웃된 경우
-        setIsUserLoggedIn(false);
-      }
-    });
+  const auth = getAuth();
+ const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+  if (authUser) {
+    setIsUserLoggedIn(!authUser.isAnonymous);
+    setUser(authUser);
+  } else {
+    setIsUserLoggedIn(false);
+    setUser(null);
+  }
+});
 
-    return () => unsubscribe();
-  }, []);
+  return () => unsubscribe();
+}, []);
 
   return (
-    <UserContext.Provider value={{ isUserLoggedIn }}>
-      {children}
-    </UserContext.Provider>
-  );
+  <UserContext.Provider value={{ isUserLoggedIn, user }}>
+    {children}
+  </UserContext.Provider>
+);
 };
 
 export { UserProvider, UserContext };

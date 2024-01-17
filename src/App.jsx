@@ -8,7 +8,7 @@ import '/src/App.css';
 import Board from './components/board.jsx';
 import { UserProvider } from './components/UserContext.jsx';
 import MyPage from './components/myPage.jsx';
-import Yamae from './components/Yamae.jsx';
+import Yamae from './components/yamae.jsx';
 import Jinsim from './components/jinsim.jsx';
 import Jayou from './components/Jayou.jsx';
 import Annae from './components/Annae.jsx';
@@ -66,7 +66,7 @@ const App = () => {
           <Route
             path="/yaMae"
             element={
-              <div className="MainPage_bg">
+              <div className="notice_pg">
                 <Yamae />
               </div>
             }
@@ -74,7 +74,7 @@ const App = () => {
           <Route
             path="/jinsim"
             element={
-              <div className="MainPage_bg">
+              <div className="notice_pg">
                 <Jinsim />
               </div>
             }
@@ -82,7 +82,7 @@ const App = () => {
           <Route
             path="/jayou"
             element={
-              <div className="MainPage_bg">
+              <div className="notice_pg">
                 <Jayou />
               </div>
             }
@@ -90,7 +90,7 @@ const App = () => {
           <Route
             path="/annae"
             element={
-              <div className="MainPage_bg">
+              <div className="notice_pg">
                 <Annae />
               </div>
             }
@@ -98,7 +98,7 @@ const App = () => {
           <Route
             path="/notice/:postId"
             element={
-              <div className="MainPage_bg">
+              <div className="notice_pg">
                 <Notice />
               </div>
             }
