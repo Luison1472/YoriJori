@@ -12,7 +12,18 @@ import Yamae from './components/yamae.jsx';
 import Jinsim from './components/jinsim.jsx';
 import Jayou from './components/Jayou.jsx';
 import Annae from './components/Annae.jsx';
+
+import YamaeBoard from './components/yamaeBoard.jsx';
+import JinsimBoard from './components/jinsimBoard.jsx';
+import AnnaeBoard from './components/annaeBoard.jsx';
+import JayouBoard from './components/jayouBoard.jsx';
+import MainPageBoard from './components/MainPageBoard.jsx';
+
 import Notice from './components/NoticePage.jsx';
+import YamaeNoticePage from './components/yamaeNoticePage.jsx';
+import JinsimNoticePage from './components/jinsimNoticePage.jsx';
+import JayouNoticePage from './components/jayouNoticepage.jsx';
+
 
 const App = () => {
 
@@ -103,6 +114,40 @@ const App = () => {
               </div>
             }
           />
+          <Route
+            path="/YamaeNotice/:postId"
+            element={
+              <div className="notice_pg">
+                <YamaeNoticePage />
+              </div>
+            }
+          />
+          <Route
+            path="/JinsimNotice/:postId"
+            element={
+              <div className="notice_pg">
+                <JinsimNoticePage />
+              </div>
+            }
+          />
+          <Route
+            path="/JayouNotice/:postId"
+            element={
+              <div className="notice_pg">
+                <JayouNoticePage />
+              </div>
+            }
+          />
+          <Route path="/MainPageBoard" element={
+            <div className="notice_pg"><MainPageBoard /></div>} />
+          <Route path="/YamaeBoard" element={
+            <div className="notice_pg"><YamaeBoard /></div>} />
+          <Route path="/JinsimBoard" element={
+            <div className="notice_pg"><JinsimBoard /></div>} />
+          <Route path="/JayouBoard" element={
+            <div className="notice_pg"><JayouBoard /></div>} />
+          <Route path="/AnnaeBoard" element={
+            <div className="notice_pg"><AnnaeBoard /></div>} />
         </Routes>
       </div>
     </UserProvider>

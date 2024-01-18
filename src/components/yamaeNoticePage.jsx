@@ -34,7 +34,7 @@ const NoticePage = () => {
 
      const fetchData = async () => {
     try {
-      const postDocRef = doc(db, 'posts', postId);
+      const postDocRef = doc(db, 'yamae', postId);
       const postDocSnap = await getDoc(postDocRef);
 
       if (postDocSnap.exists()) {
@@ -84,7 +84,7 @@ const NoticePage = () => {
 
   const increaseViews = async () => {
   try {
-    const postDocRef = doc(db, 'posts', postId);
+    const postDocRef = doc(db, 'yamae', postId);
     // 서버에서 현재 조회수 가져오기
     const postDocSnap = await getDoc(postDocRef);
     const currentViews = postDocSnap.data().views || 0;

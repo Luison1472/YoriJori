@@ -3,15 +3,14 @@ import '/public/MainPage.css';
 import { UserContext } from './UserContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-import { db } from '/src/firebase-config';
 import PostItem from '/src/components/PostItem.jsx';
 import Pagination from '/src/components/Pagination.jsx';
 import Header from './Header.jsx';
 
+import { fetchPosts } from '/src/components/firebase-utils.js';
+
 function MainPage() {
-  const { isUserLoggedIn } = useContext(UserContext);
-  console.log('Is user logged in:', isUserLoggedIn);  
+  const { isUserLoggedIn } = useContext(UserContext); 
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 12;
@@ -21,24 +20,12 @@ function MainPage() {
     setCurrentPage(pageNumber);
   };
 
-  const fetchData = async () => {
-    try {
-      const boardCollection = collection(db, 'posts');
-      const q = query(boardCollection, orderBy('timestamp', 'desc'));
-      const querySnapshot = await getDocs(q);
-
-      const postData = [];
-      querySnapshot.forEach((doc) => {
-        postData.push({ id: doc.id, ...doc.data() });
-      });
-
+ useEffect(() => {
+    const fetchData = async () => {
+      const postData = await fetchPosts('posts'); // 컬렉션 이름 전달
       setPosts(postData);
-    } catch (error) {
-      console.error('데이터를 불러오는 동안 오류가 발생했습니다:', error);
-    }
-  };
+    };
 
-  useEffect(() => {
     fetchData();
   }, []);
 
@@ -52,7 +39,7 @@ function MainPage() {
 
   const handleWriteButtonClick = () => {
   if (isUserLoggedIn) {
-    navigate('/Board');
+    navigate('/MainPageBoard');
   } else {
     alert('로그인이 필요한 기능입니다.');
     navigate('/MainPage'); // 비로그인 사용자일 경우 메인 페이지로 이동

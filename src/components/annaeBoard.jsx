@@ -9,7 +9,7 @@ import TextEditor from "/src/components/TextEditor";
 import { getAuth, signOut } from 'firebase/auth';
 import { fetchPosts } from '/src/components/firebase-utils.js';
 
-function Board() {
+function annaeBoard() {
  const { isUserLoggedIn, user } = useContext(UserContext);
  const [nickname, setNickname] = useState(user ? user.displayName : '');
   const [title, setTitle] = useState('');
@@ -31,6 +31,33 @@ function Board() {
       alert('로그인이 필요한 기능입니다.');
     }
   };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log('isUserLoggedIn:', isUserLoggedIn);
+  if (!isUserLoggedIn) {
+    alert('로그인이 필요한 서비스입니다.');
+    navigate('/MainPage');
+    return;
+  }
+
+  try {
+    const docRef = await addDoc(collection(db, 'annae'), {
+      nickname,
+      title,
+      content,
+      timestamp: new Date(),
+    });
+
+    alert('게시물이 성공적으로 작성되었습니다!', docRef.id);
+    setNickname('');
+    setTitle('');
+    setContent('');
+    fetchData(); // 게시글 작성 후 데이터 다시 불러오기
+  } catch (error) {
+    console.error('게시물을 작성하는 동안 오류가 발생했습니다:', error);
+  }
+};
 
   const handleLogout = () => {
     const auth = getAuth();
@@ -55,32 +82,14 @@ function Board() {
     }
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log('isUserLoggedIn:', isUserLoggedIn);
-  if (!isUserLoggedIn) {
-    alert('로그인이 필요한 서비스입니다.');
-    navigate('/MainPage');
-    return;
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const postData = await fetchPosts('annae'); // 다른 컬렉션 이름 전달
+      setPosts(postData);
+    };
 
-  try {
-    const docRef = await addDoc(collection(db, 'posts'), {
-      nickname,
-      title,
-      content,
-      timestamp: new Date(),
-    });
-
-    alert('게시물이 성공적으로 작성되었습니다! 문서 ID:', docRef.id);
-    setNickname('');
-    setTitle('');
-    setContent('');
-    fetchData(); // 게시글 작성 후 데이터 다시 불러오기
-  } catch (error) {
-    console.error('게시물을 작성하는 동안 오류가 발생했습니다:', error);
-  }
-};
+    fetchData();
+  }, []);
   
   const handleGoToMainPage = () => {
     navigate('/MainPage');
@@ -88,7 +97,7 @@ function Board() {
 
   const fetchData = async () => {
   try {
-    const boardCollection = collection(db, 'posts');
+    const boardCollection = collection(db, 'annae');
     const q = query(boardCollection, orderBy('timestamp', 'desc'));
     const querySnapshot = await getDocs(q);
 
@@ -157,4 +166,4 @@ function Board() {
   );
 }
 
-export default Board;
+export default annaeBoard;

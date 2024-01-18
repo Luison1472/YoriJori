@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import '/public/yamae.css';
+import { UserContext } from './UserContext';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth';
+import PostItem from '/src/components/PostItem.jsx';
+import Pagination from '/src/components/Pagination.jsx';
 import Header from './Header.jsx';
 
-const Jinsim = () => {
+import { fetchPosts } from '/src/components/firebase-utils.js';
+
+const jinsim = () => {
+const { isUserLoggedIn } = useContext(UserContext);
+  console.log('Is user logged in:', isUserLoggedIn);  
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 12;
+  const navigate = useNavigate();
+
+   const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+   useEffect(() => {
+    const fetchData = async () => {
+      const postData = await fetchPosts('jinsim'); // 다른 컬렉션 이름 전달
+      setPosts(postData);
+    };
+
+    fetchData();
+   }, []);
+  
+  
+
 
   const handleMyPageClick = () => {
     if (isUserLoggedIn) {
@@ -10,6 +40,15 @@ const Jinsim = () => {
       alert('로그인이 필요한 기능입니다.');
     }
   };
+
+  const handleWriteButtonClick = () => {
+  if (isUserLoggedIn) {
+    navigate('/JinsimBoard');
+  } else {
+    alert('로그인이 필요한 기능입니다.');
+    navigate('/MainPage'); // 비로그인 사용자일 경우 메인 페이지로 이동
+  }
+};
 
    const handleLogout = () => {
     const auth = getAuth();
@@ -34,11 +73,45 @@ const Jinsim = () => {
     }
   };
 
+
   return (
     <>
       <Header handleMyPageClick={handleMyPageClick} handleLogout={handleLogout} />
+      <div className="yamae_free">
+        <div className="yamae_notice">
+          <p>진심요리 게시판</p>
+          <button className="yamae_write_btn" onClick={handleWriteButtonClick}>
+            <img src="/public/img/write.png" alt="작성" />
+          </button>
+        </div>
+        <div className="yamae_post-header">
+          <p>순서</p>
+          <p>닉네임</p>
+          <p>제목</p>
+          <p>날짜</p>
+        </div>
+
+        <div className="yamae_post-list">
+  {posts
+    .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+    .map((post, index) => (
+      <Link key={post.id} to={`/JinsimNotice/${post.id}`}>
+        {/* 클릭 시 해당 글의 상세 페이지로 이동 */}
+        <PostItem key={post.id} index={index + 1} post={post} showImage={false} nicknameFirst={true} />
+      </Link>
+    ))}
+</div>
+        <div className="yamae_pagination">
+          <Pagination
+            totalPosts={posts.length}
+            postsPerPage={postsPerPage}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      </div>
       </>
   );
 };
 
-export default Jinsim;
+export default jinsim;

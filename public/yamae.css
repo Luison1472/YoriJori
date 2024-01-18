@@ -1,4 +1,4 @@
-.free {
+.yamae_free {
     width: 300px;
     height: 400px;
     background-color: rgb(255, 255, 255);
@@ -10,8 +10,7 @@
 }
 
 
-
-.notice {
+.yamae_notice {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -19,18 +18,18 @@
 }
 
 
-.write_btn {
+.yamae_write_btn {
     height: 30px;
     background-color: transparent;
     border: none;
 }
 
-.free img {
+.yamae_free img {
     width: 20px;
 }
 
 
-.post-list .post-item {
+.yamae_post-list .yamae_post-item {
     display: grid;
     grid-template-columns: 35px 50px 155px 60px;
     grid-template-areas: '순서 닉네임 제목 날짜';
@@ -38,25 +37,25 @@
     color: #000000;
 }
 
-.post-list a {
+.yamae_post-list a {
     text-decoration: none;
 }
 
-.post-list p {
+.yamae_post-list p {
     font-size: 11px;
     display: inline;
     margin: 5px 0px;
 }
 
-.post-list p:nth-child(1) {
+.yamae_post-list p:nth-child(1) {
     padding-left: 13px;
 }
 
-.post-list p:nth-child(2) {
+.yamae_post-list p:nth-child(2) {
     padding-left: 6px;
 }
 
-.post-list p:nth-child(3) {
+.yamae_post-list p:nth-child(3) {
     padding-left: 10px;
     overflow: hidden;
     white-space: nowrap;
@@ -66,13 +65,13 @@
     width: 150px;
 }
 
-.post-list p:nth-child(4) {
+.yamae_post-list p:nth-child(4) {
     font-size: 9px;
 }
 
 
 
-.post-header {
+.yamae_post-header {
     display: grid;
     grid-template-columns: 35px 50px 155px 60px;
     grid-template-areas:
@@ -81,14 +80,14 @@
     border-bottom: 1px solid #888888;
 }
 
-.post-header p {
+.yamae_post-header p {
     margin: 3px 0px;
     font-size: 10px;
     display: flex;
     justify-content: center;
 }
 
-.pagination {
+.yamae_pagination {
     position: absolute;
     bottom: 2%;
     left: 50%;
@@ -98,7 +97,7 @@
     padding: 0;
 }
 
-.pagination button {
+.yamae_pagination button {
     margin: 0 5px;
     width: 25px;
     background-color: transparent;
@@ -106,6 +105,6 @@
     border: none;
 }
 
-.post-item.notice-page p:nth-child(2) {
+.yamae_post-item.notice-page p:nth-child(2) {
     order: 1;
 }
