@@ -10,7 +10,8 @@ import { getAuth, signOut } from 'firebase/auth';
 import { fetchPosts } from '/src/components/firebase-utils.js';
 
 function yamaeBoard() {
- const { isUserLoggedIn, user } = useContext(UserContext);
+  const { isUserLoggedIn, user } = useContext(UserContext);
+  const storedNickname = localStorage.getItem('nickname');
  const [nickname, setNickname] = useState(user ? user.displayName : '');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -34,7 +35,7 @@ function yamaeBoard() {
 
    const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log('isUserLoggedIn:', isUserLoggedIn);
+  localStorage.setItem('nickname', nickname);
   if (!isUserLoggedIn) {
     alert('로그인이 필요한 서비스입니다.');
     navigate('/MainPage');
@@ -62,7 +63,7 @@ function yamaeBoard() {
   const handleLogout = () => {
     const auth = getAuth();
     const user = auth.currentUser;
-
+    localStorage.removeItem('nickname');
     if (user && user.isAnonymous) {
       auth.signOut()
         .then(() => {

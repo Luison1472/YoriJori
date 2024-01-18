@@ -10,11 +10,10 @@ import Header from './Header.jsx';
 import { fetchPosts } from '/src/components/firebase-utils.js';
 
 const jayou = () => {
-const { isUserLoggedIn } = useContext(UserContext);
-  console.log('Is user logged in:', isUserLoggedIn);  
+const { isUserLoggedIn } = useContext(UserContext); 
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 12;
+  const postsPerPage = 24;
   const navigate = useNavigate();
 
    const handlePageChange = (pageNumber) => {
@@ -91,7 +90,7 @@ const { isUserLoggedIn } = useContext(UserContext);
           <p>날짜</p>
         </div>
 
-        <div className="yamae_post-list">
+        <div className="post-list">
   {posts
     .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
     .map((post, index) => (
