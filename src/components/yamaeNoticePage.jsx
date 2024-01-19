@@ -174,7 +174,7 @@ const NoticePage = () => {
       )}
 
         <div className="comments-section">
-        <h3>전체댓글 ({comments.length}) 방문수({post ? post.views : 0})</h3>
+        <h3>전체댓글 ({comments.length}) 방문수({post ? post.views : 1})</h3>
        <div className="comments-container">
           <div className="comments-list">
             {comments
@@ -184,7 +184,7 @@ const NoticePage = () => {
               ))}
           </div>
           <div className="comment_pagination">
-            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+            {Array.from({ length: totalPages }, (_, index) => index + 0).map(
               (page) => (
                 <button
                   key={page}
