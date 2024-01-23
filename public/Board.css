@@ -68,20 +68,19 @@
 .sub_btn:hover {
     background-color: #c96112;
     transform: translateY(-5px);
-    /* 마우스 호버 시 배경색 변경 */
 }
 
 .sub_btn:active {
     transform: translateY(0);
-    /* 클릭 시 이동한 만큼 되돌아오도록 설정 */
 }
+
 
 .ck p {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .ck {
-    max-height: 500px;
+    max-height: 550px;
 }
 
 .board_sub_header {
@@ -89,10 +88,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 5px;
+    padding-left: 10px;
 }
 
 .board_sub_header p {
     display: inline;
+    font-size: 30px;
+    margin: 6px 0px;
+    font-weight: bold;
 }
 
 .sub_btn_container,

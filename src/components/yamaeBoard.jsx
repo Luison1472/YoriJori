@@ -93,7 +93,7 @@ function yamaeBoard() {
   }, []);
   
   const handleGoToMainPage = () => {
-    navigate('/MainPage');
+    navigate('/yamae');
   };
 
   const fetchData = async () => {

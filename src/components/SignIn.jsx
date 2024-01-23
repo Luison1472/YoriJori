@@ -63,7 +63,7 @@ function SignIn() {
             <input type="password" id="confirmPassword" placeholder="비밀번호를 확인하세요" required />
         </div>
         <div className="in_password">
-          <input type="text" id="nickname" placeholder="닉네임을 입력하세요" value={nickname || ''} onChange={(e) => setNickname(e.target.value)} required maxLength={5} />
+          <input type="text" id="nickname" placeholder="닉네임을 입력하세요" value={nickname || ''} onChange={(e) => setNickname(e.target.value)} required maxLength={6} />
         </div>
             {passwordMatchError && <p className="error">{passwordMatchError}</p>}
           <div className="sign_and_login">

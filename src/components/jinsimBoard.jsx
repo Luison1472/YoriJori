@@ -92,7 +92,7 @@ function jinsimBoard() {
   }, []);
   
   const handleGoToMainPage = () => {
-    navigate('/MainPage');
+    navigate('/jinsim');
   };
 
   const fetchData = async () => {

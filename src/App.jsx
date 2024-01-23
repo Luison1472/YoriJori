@@ -9,7 +9,7 @@ import Board from './components/board.jsx';
 import { UserProvider } from './components/UserContext.jsx';
 import MyPage from './components/myPage.jsx';
 import Yamae from './components/yamae.jsx';
-import Jinsim from './components/jinsim.jsx';
+import Jinsim from './components/Jinsim.jsx';
 import Jayou from './components/Jayou.jsx';
 import Annae from './components/Annae.jsx';
 

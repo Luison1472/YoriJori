@@ -92,7 +92,7 @@ function jayouBoard() {
   }, []);
   
   const handleGoToMainPage = () => {
-    navigate('/MainPage');
+    navigate('/jayou');
   };
 
   const fetchData = async () => {

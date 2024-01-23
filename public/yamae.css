@@ -15,6 +15,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 0px 10px;
+    margin: 10px 0px;
+}
+
+.yamae_notice p {
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0px;
+    line-height: 90%;
 }
 
 
@@ -29,51 +37,57 @@
 }
 
 
-.post-list .post-item {
+
+
+.component-post-list .post-item {
     display: grid;
-    grid-template-columns: 35px 50px 155px 60px;
+    grid-template-columns: 35px 70px 175px 60px;
     grid-template-areas: '순서 닉네임 제목 날짜';
     border-bottom: 1px solid #888888;
     color: #000000;
 }
 
-.yamae_post-list a {
+.component-post-list a {
     text-decoration: none;
 }
 
-.yamae_post-list p {
-    font-size: 11px;
+.component-post-list p {
+    font-size: 13px;
     display: inline;
-    margin: 5px 0px;
+    margin: 3.5px 0px;
+    border-left: 1px solid #888888;
+    font-weight: 700;
 }
 
-.yamae_post-list p:nth-child(1) {
+.component-post-list p:nth-child(1) {
     padding-left: 13px;
+    border: none;
 }
 
-.yamae_post-list p:nth-child(2) {
+.component-post-list p:nth-child(2) {
     padding-left: 6px;
 }
 
-.yamae_post-list p:nth-child(3) {
+.component-post-list p:nth-child(3) {
     padding-left: 10px;
     overflow: hidden;
     white-space: nowrap;
-    /* 한 줄로만 표시하도록 설정 */
     text-overflow: ellipsis;
-    /* 넘치는 부분에 ... 표시 */
-    width: 150px;
+    width: 170px;
 }
 
-.yamae_post-list p:nth-child(4) {
-    font-size: 9px;
+
+
+.component-post-list p:nth-child(4) {
+    font-size: 12px;
+    padding-left: 8px;
 }
 
 
 
 .yamae_post-header {
     display: grid;
-    grid-template-columns: 35px 50px 155px 60px;
+    grid-template-columns: 35px 70px 175px 60px;
     grid-template-areas:
         '순서 닉네임 제목 날짜';
     border-top: 1px solid #888888;
@@ -85,6 +99,12 @@
     font-size: 10px;
     display: flex;
     justify-content: center;
+    border-left: 1px solid #888888;
+    font-weight: 700;
+}
+
+.yamae_post-header p:nth-child(1) {
+    border: none;
 }
 
 .yamae_pagination {
@@ -95,6 +115,7 @@
     display: flex;
     list-style: none;
     padding: 0;
+    font-family: 'GangwonEduSaeeum_OTFMediumA';
 }
 
 .yamae_pagination button {
@@ -103,6 +124,7 @@
     background-color: transparent;
     color: #000000;
     border: none;
+    cursor: pointer;
 }
 
 .yamae_post-item.notice-page p:nth-child(2) {

@@ -32,13 +32,22 @@ const NoticePage = () => {
   };
 
 
-     const fetchData = async () => {
+   const fetchData = async () => {
     try {
       const postDocRef = doc(db, 'posts', postId);
       const postDocSnap = await getDoc(postDocRef);
 
       if (postDocSnap.exists()) {
-        setPost({ id: postDocSnap.id, ...postDocSnap.data() });
+        const postData = postDocSnap.data();
+
+        // 방문수가 없을 경우 초기화
+        const views = postData.views || 0;
+
+        setPost({
+          id: postDocSnap.id,
+          ...postData,
+          views: views,
+        });
       } else {
         console.error('해당 ID의 게시물이 존재하지 않습니다.');
       }

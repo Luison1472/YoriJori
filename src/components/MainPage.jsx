@@ -87,7 +87,7 @@ function MainPage() {
           <p>날짜</p>
         </div>
 
-        <div className="post-list">
+        <div className="main-post-list">
   {posts
     .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
     .map((post, index) => (

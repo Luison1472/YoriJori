@@ -1,8 +1,9 @@
 .login_title {
     font-size: 40px;
-    padding-top: 180px;
-    text-shadow: 0px 2px 5px #ffffff;
+    padding-top: 130px;
+    text-shadow: 0px 2px 5px #0e0e0e;
     margin: 0px;
+    color: white;
 }
 
 .form_bg {
@@ -10,7 +11,6 @@
     height: 844px;
     margin: 0 auto;
     text-align: center;
-    background-repeat: none;
 }
 
 .login_join {
@@ -29,19 +29,15 @@
 #signUpPassword {
     width: 300px;
     height: 25px;
-    border: 3px solid black;
     border-radius: 20px;
     margin-bottom: 5px;
 }
 
 ::placeholder {
-    /* placeholder 텍스트의 크기와 두께를 설정합니다 */
+
     font-size: 14px;
-    color: black;
-    /* 원하는 크기로 설정 */
+    color: rgb(0, 0, 0);
     font-weight: 600;
-    /* 원하는 두께로 설정 */
-    /* 기타 스타일링 */
 }
 
 input[type="email"],
@@ -53,13 +49,14 @@ input[type="password"] {
 .login_btn {
     background-color: transparent;
     border: none;
-    font-size: 25px;
+    font-size: 30px;
     padding-top: 40px;
     padding-left: 30px;
     padding-right: 30px;
     font-weight: bold;
     color: #ffffff;
     text-shadow: 0px 2px 5px #000000;
+    font-family: 'GangwonEduSaeeum_OTFMediumA';
 }
 
 .google_btn {

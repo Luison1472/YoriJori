@@ -130,7 +130,7 @@ function MainPageBoard() {
        
       </div>
 
-
+        
         <div className="form_box">
         <input
           className="nick_input"

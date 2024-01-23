@@ -1,5 +1,5 @@
 #root {
-  font-family: 'IM_Hyemin-Bold';
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
 }
 
 body {
@@ -15,17 +15,17 @@ body {
 }
 
 .LoginPage_bg {
-  background-image: url(/public/img/bg.png);
+  background-image: url(/public/img/purple.png);
 }
 
 .MainPage_bg {
   width: 390px;
   height: 844px;
-  background-image: url(/public/img/MainPage_background.png);
+  background-image: url(/public/img/little_purple.png);
 }
 
 .notice_pg {
-  background-color: white;
+  background-image: url(/public/img/little_purple.png);
   width: 390px;
   height: 844px;
 }
@@ -35,10 +35,9 @@ html {
   padding: 0;
 }
 
-
 @font-face {
-  font-family: 'IM_Hyemin-Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
