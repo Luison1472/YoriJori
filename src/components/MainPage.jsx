@@ -7,7 +7,9 @@ import PostItem from '/src/components/PostItem.jsx';
 import Pagination from '/src/components/Pagination.jsx';
 import Header from './Header.jsx';
 
-import { fetchPosts } from '/src/components/firebase-utils.js';
+import { fetchPosts } from '/src/firebase-config.js';
+import PopularPosts from '/src/components/PopularPosts.jsx';
+
 
 function MainPage() {
   const { isUserLoggedIn } = useContext(UserContext); 
@@ -22,7 +24,7 @@ function MainPage() {
 
  useEffect(() => {
     const fetchData = async () => {
-      const postData = await fetchPosts('posts'); // 컬렉션 이름 전달
+      const postData = await fetchPosts('posts');
       setPosts(postData);
     };
 
@@ -92,7 +94,6 @@ function MainPage() {
     .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
     .map((post, index) => (
       <Link key={post.id} to={`/Notice/${post.id}`}>
-        {/* 클릭 시 해당 글의 상세 페이지로 이동 */}
         <PostItem key={post.id} index={index + 1} post={post} showImage={false} nicknameFirst={true} />
       </Link>
     ))}
@@ -106,6 +107,8 @@ function MainPage() {
           />
         </div>
       </div>
+
+      <PopularPosts />
 
     </>
   );

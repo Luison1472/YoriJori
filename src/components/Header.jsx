@@ -12,10 +12,10 @@ const Header = ({ handleMyPageClick, handleLogout }) => {
       </div>
       <div className="mainpg_header">
         <ul className="mainpg_nav">
+          <li><Link to="/all">전체게시판</Link></li>
           <li><Link to="/yamae">야매요리</Link></li>
           <li><Link to="/jinsim">진심요리</Link></li>
           <li><Link to="/jayou">자유게시판</Link></li>
-          <li><Link to="/annae">안내</Link></li>
         </ul>
       </div>
     </div>

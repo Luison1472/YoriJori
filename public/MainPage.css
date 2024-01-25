@@ -7,7 +7,125 @@
     border-radius: 20px;
     box-shadow: 15px 10px 3px #888888;
     position: relative;
+    margin-bottom: 20px;
 }
+
+.all-posts {
+    width: 300px;
+    height: 450px;
+    background-color: rgb(255, 255, 255);
+    margin: 0px auto;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    box-shadow: 15px 10px 3px #888888;
+    position: relative;
+}
+
+.all-list li {
+    list-style: none;
+}
+
+.all-list .post-item {
+    display: grid;
+    grid-template-columns: 35px 60px 145px 60px;
+    grid-template-areas: '순서 닉네임 제목 날짜';
+    border-bottom: 1px solid #888888;
+    color: #000000;
+}
+
+.all-list p:nth-child(1) {
+    padding-left: 13px;
+    border: none;
+}
+
+.all-list p:nth-child(2) {
+    padding-left: 6px;
+}
+
+.all-list p:nth-child(3) {
+    padding-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 140px;
+}
+
+.all-list p:nth-child(4) {
+    font-size: 12px;
+    padding-left: 8px;
+}
+
+.all-list a {
+    text-decoration: none;
+}
+
+.all-list p {
+    font-size: 13px;
+    display: inline;
+    margin: 5px 0px;
+    font-weight: 600;
+    border-left: 1px solid #888888;
+}
+
+
+
+.popular-posts {
+    width: 300px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    margin: 0px auto;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    box-shadow: 15px 10px 3px #888888;
+    position: relative;
+}
+
+.popular-list li {
+    list-style: none;
+}
+
+.popular-list .post-item {
+    display: grid;
+    grid-template-columns: 35px 60px 145px 60px;
+    grid-template-areas: '순서 닉네임 제목 날짜';
+    border-bottom: 1px solid #888888;
+    color: #000000;
+}
+
+.popular-list p:nth-child(1) {
+    padding-left: 13px;
+    border: none;
+}
+
+.popular-list p:nth-child(2) {
+    padding-left: 6px;
+}
+
+.popular-list p:nth-child(3) {
+    padding-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 140px;
+}
+
+.popular-list p:nth-child(4) {
+    font-size: 12px;
+    padding-left: 8px;
+}
+
+.popular-list a {
+    text-decoration: none;
+}
+
+.popular-list p {
+    font-size: 13px;
+    display: inline;
+    margin: 5px 0px;
+    font-weight: 600;
+    border-left: 1px solid #888888;
+}
+
 
 
 
@@ -16,7 +134,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0px 10px;
-    margin: 10px 0px;
+    margin: 4px 0px;
 }
 
 .notice p {
@@ -39,16 +157,17 @@
 
 .main-post-list .post-item {
     display: grid;
-    grid-template-columns: 35px 50px 155px 60px;
+    grid-template-columns: 35px 60px 145px 60px;
     grid-template-areas: '순서 닉네임 제목 날짜';
     border-bottom: 1px solid #888888;
     color: #000000;
 }
 
 
+
 .post-list .post-item {
     display: grid;
-    grid-template-columns: 35px 50px 155px 60px;
+    grid-template-columns: 35px 60px 145px 60px;
     grid-template-areas: '순서 닉네임 제목 날짜';
     border-bottom: 1px solid #888888;
     color: #000000;
@@ -92,7 +211,7 @@
 
 .post-header {
     display: grid;
-    grid-template-columns: 35px 50px 155px 60px;
+    grid-template-columns: 35px 60px 145px 60px;
     grid-template-areas:
         '순서 닉네임 제목 날짜';
     border-top: 1px solid #888888;
@@ -134,4 +253,76 @@
 
 .post-item.notice-page p:nth-child(2) {
     order: 1;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.search-form-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search_btn {
+    padding: 10px 15px;
+    background-color: #9770c3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a993ff;
+}
+
+select {
+    width: 80px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.result-box {
+    background-color: white;
+    width: 376px;
+    margin-left: 8px;
+    border-radius: 20px;
+}
+
+.search-results {
+    width: 250px;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 10px;
+    list-style: none;
+    border-radius: 20px;
+}
+
+.search-results p {
+    margin: 0px;
+    margin-bottom: 20px;
+    padding-top: 5px;
+}
+
+.search-results a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+    font-size: 18px;
 }

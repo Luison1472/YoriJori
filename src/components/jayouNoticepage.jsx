@@ -10,8 +10,9 @@ import Comment from '/src/components/Comment.jsx';
 
 const PAGE_SIZE = 8;
 
-const NoticePage = () => {
+const jayouNoticePage = () => {
   const { postId } = useParams();
+  console.log(postId);  
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]); 
@@ -32,29 +33,26 @@ const NoticePage = () => {
   };
 
 
-     const fetchData = async () => {
-    try {
-      const postDocRef = doc(db, 'jayou', postId);
-      const postDocSnap = await getDoc(postDocRef);
+  const fetchData = async () => {
+  try {
+    const postDocRef = doc(db, 'jayou', postId);
+    const postDocSnap = await getDoc(postDocRef);
 
-      if (postDocSnap.exists()) {
-        const postData = postDocSnap.data();
+    if (postDocSnap.exists()) {
+      const postData = postDocSnap.data();
+      const views = postData.views || 0;
 
-        // 방문수가 없을 경우 초기화
-        const views = postData.views || 0;
-
-        setPost({
-          id: postDocSnap.id,
-          ...postData,
-          views: views,
-        });
-      } else {
-        console.error('해당 ID의 게시물이 존재하지 않습니다.');
-      }
-    } catch (error) {
-      console.error('데이터를 불러오는 동안 오류가 발생했습니다:', error);
+      setPost({
+        id: postDocSnap.id,
+        ...postData,
+        views: views,
+      });
+    } else {
+      console.error('해당 ID의 게시물이 존재하지 않습니다.');
     }
-  };
+  } catch (error) {
+  }
+};
 
   useEffect(() => {
     fetchData();
@@ -88,24 +86,33 @@ const NoticePage = () => {
   useEffect(() => {
     fetchData();
     fetchComments();
-    increaseViews();
+    getViews();
   }, [postId]);
 
-  const increaseViews = async () => {
+  const getViews = async () => {
   try {
     const postDocRef = doc(db, 'jayou', postId);
-    // 서버에서 현재 조회수 가져오기
     const postDocSnap = await getDoc(postDocRef);
-    const currentViews = postDocSnap.data().views || 0;
 
-    // 서버에 조회수 업데이트
-    await updateDoc(postDocRef, {
-      views: currentViews + 1,
-    });
+    if (postDocSnap.exists()) {
+      return postDocSnap.data().views || 0;
+    } else {
+      console.error('getViews: 해당 ID의 게시물이 존재하지 않습니다.');
+      console.error('getViews: postId:', postId);
+      return 0;
+    }
   } catch (error) {
-    console.error('조회수를 증가하는 동안 오류가 발생했습니다:', error);
+    console.error('getViews에서 오류 발생:', error);
+    console.error('getViews: postId:', postId);
+    return 0;
   }
 };
+
+useEffect(() => {
+  fetchData();
+  fetchComments();
+  getViews();
+}, [postId]);
 
   const handleCommentSubmit = async () => {
   try {
@@ -172,7 +179,7 @@ const NoticePage = () => {
     <>
       <Header handleMyPageClick={handleMyPageClick} handleLogout={handleLogout} />
       <div className="notice_header">
-        <p>공지사항</p>
+        <p>자유게시판</p>
         <div className="hr1">
         </div>
       </div>
@@ -225,4 +232,4 @@ const NoticePage = () => {
   );
 };
 
-export default NoticePage;
+export default jayouNoticePage;

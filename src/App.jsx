@@ -11,7 +11,7 @@ import MyPage from './components/myPage.jsx';
 import Yamae from './components/yamae.jsx';
 import Jinsim from './components/Jinsim.jsx';
 import Jayou from './components/Jayou.jsx';
-import Annae from './components/Annae.jsx';
+import All from './components/All.jsx';
 
 import YamaeBoard from './components/yamaeBoard.jsx';
 import JinsimBoard from './components/jinsimBoard.jsx';
@@ -99,15 +99,15 @@ const App = () => {
             }
           />
           <Route
-            path="/annae"
+            path="/all"
             element={
               <div className="notice_pg">
-                <Annae />
+                <All />
               </div>
             }
           />
           <Route
-            path="/notice/:postId"
+            path="/Notice/:postId"
             element={
               <div className="notice_pg">
                 <Notice />

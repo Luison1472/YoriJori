@@ -10,7 +10,7 @@ import Comment from '/src/components/Comment.jsx';
 
 const PAGE_SIZE = 8;
 
-const NoticePage = () => {
+const yamaeNoticePage = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
@@ -42,7 +42,7 @@ const NoticePage = () => {
 
         // 방문수가 없을 경우 초기화
         const views = postData.views || 0;
-
+         await updateDoc(postDocRef, { views: views + 1 });
         setPost({
           id: postDocSnap.id,
           ...postData,
@@ -88,22 +88,23 @@ const NoticePage = () => {
   useEffect(() => {
     fetchData();
     fetchComments();
-    increaseViews();
+    getViews();
   }, [postId]);
 
-  const increaseViews = async () => {
+  const getViews = async () => {
   try {
     const postDocRef = doc(db, 'yamae', postId);
-    // 서버에서 현재 조회수 가져오기
     const postDocSnap = await getDoc(postDocRef);
-    const currentViews = postDocSnap.data().views || 0;
 
-    // 서버에 조회수 업데이트
-    await updateDoc(postDocRef, {
-      views: currentViews + 1,
-    });
+    if (postDocSnap.exists()) {
+      return postDocSnap.data().views || 0;
+    } else {
+      console.error('해당 ID의 게시물이 존재하지 않습니다.');
+      return 0;
+    }
   } catch (error) {
-    console.error('조회수를 증가하는 동안 오류가 발생했습니다:', error);
+    console.error('조회수를 가져오는 동안 오류가 발생했습니다:', error);
+    return 0;
   }
 };
 
@@ -172,7 +173,7 @@ const NoticePage = () => {
     <>
       <Header handleMyPageClick={handleMyPageClick} handleLogout={handleLogout} />
       <div className="notice_header">
-        <p>공지사항</p>
+        <p>야매요리</p>
         <div className="hr1">
         </div>
       </div>
@@ -225,4 +226,4 @@ const NoticePage = () => {
   );
 };
 
-export default NoticePage;
+export default yamaeNoticePage;
