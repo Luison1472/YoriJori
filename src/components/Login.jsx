@@ -73,6 +73,9 @@ function Login() {
       <form className="form_bg">
         <p className="login_title">요리조리<br/>Test.version</p>
         <p className="login_join">로그인</p>
+        <div className="carrot">
+          <img src="/img/yori.png" alt="당근이미지"></img>
+        </div>
         <div className="in_Email">
           <input type="email" id="signUpEmail" placeholder="이메일을 입력하세요" required />
         </div>
@@ -85,7 +88,7 @@ function Login() {
           <Link to="/SignIn"><button className="join_btn" type="button">회원가입</button></Link>
         </div>
         <button className="google_btn" onClick={handleGoogleLogin}>
-          <img src="/public/img/google_login.png" alt="구글 로그인" />
+          <img src="/img/google_login.png" alt="구글 로그인" />
         </button>
       </form>
     </>

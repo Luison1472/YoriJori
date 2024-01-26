@@ -34,7 +34,7 @@
 }
 
 .profile_change_btn {
-    background-color: rgb(190, 116, 255);
+    background-color: #ff7a33;
     border: none;
     display: flex;
     justify-content: center;
@@ -50,7 +50,7 @@
 }
 
 .profileOut_btn {
-    background-color: rgb(190, 116, 255);
+    background-color: #ff7a33;
     border: none;
     display: flex;
     justify-content: center;

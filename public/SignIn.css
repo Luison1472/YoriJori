@@ -13,6 +13,7 @@
     border: none;
     border-radius: 20px;
     margin-bottom: 5px;
+    border: 1px solid #efb280;
 }
 
 ::placeholder {
@@ -35,13 +36,14 @@ input[type="text"] {
 .sign_in_btn {
     background-color: transparent;
     border: none;
-    font-size: 25px;
+    font-size: 30px;
     padding-top: 40px;
     padding-left: 0px;
     padding-right: 0px;
     font-weight: bold;
-    color: #ffffff;
-    text-shadow: 0px 2px 5px #000000;
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 2px 5px #666666;
+    font-family: inherit;
 }
 
 .google_btn {
@@ -58,9 +60,9 @@ input[type="text"] {
     padding-left: 0px;
     padding-right: 0px;
     font-weight: bold;
-    color: #ffffff;
-    text-shadow: 0px 2px 5px #000000;
-    font-size: 20px;
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 2px 5px #666666;
+    font-family: inherit;
 }
 
 .sign_and_login {

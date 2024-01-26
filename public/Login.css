@@ -1,9 +1,9 @@
 .login_title {
     font-size: 40px;
     padding-top: 50px;
-    text-shadow: 0px 2px 5px #0e0e0e;
+    text-shadow: 0px 2px 5px #666666;
     margin: 4px;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .form_bg {
@@ -15,15 +15,19 @@
 
 .signin_join {
     font-size: 30px;
-    color: white;
-    text-shadow: 0px 2px 5px #000000;
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 2px 5px #666666;
 }
 
 .login_join {
     font-size: 30px;
-    color: white;
-    text-shadow: 0px 2px 5px #000000;
-    margin-bottom: 265px;
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 2px 5px #666666;
+    margin-bottom: 0px;
+}
+
+.carrot img {
+    width: 241px;
 }
 
 .in_Email,
@@ -32,13 +36,7 @@
     justify-content: center;
 }
 
-#signUpEmail,
-#signUpPassword {
-    width: 300px;
-    height: 25px;
-    border-radius: 20px;
-    margin-bottom: 5px;
-}
+
 
 ::placeholder {
 
@@ -61,8 +59,8 @@ input[type="password"] {
     padding-left: 30px;
     padding-right: 30px;
     font-weight: bold;
-    color: #ffffff;
-    text-shadow: 0px 2px 5px #000000;
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 2px 5px #666666;
     font-family: 'GangwonEduSaeeum_OTFMediumA';
 }
 

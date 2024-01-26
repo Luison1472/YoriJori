@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #a993ff;
+  background-color: #fff3c1;
   margin: 0;
   padding: 0;
 }
@@ -11,26 +11,29 @@ body {
 .app-wrapper {
   width: 393px;
   height: 852px;
-  margin: 0px auto;
+  margin: 5vh auto;
 }
 
 .LoginPage_bg {
-  background-color: #a993ff;
+  background-color: #fff3c1;
   border: 1px solid #6a6a6a;
+  border-radius: 20px;
 }
 
 .MainPage_bg {
   width: 393px;
   height: 852px;
-  background-color: #a993ff;
+  background-color: #fff3c1;
   border: 1px solid #6a6a6a;
+  border-radius: 20px;
 }
 
 .notice_pg {
-  background-color: #a993ff;
+  background-color: #fff3c1;
   width: 393px;
   height: 852px;
   border: 1px solid #6a6a6a;
+  border-radius: 20px;
 }
 
 html {

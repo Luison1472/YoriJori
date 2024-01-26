@@ -42,7 +42,7 @@ function MyPage() {
     return nicknameSnapshot.exists();
   } catch (error) {
     console.error('닉네임 확인 중 오류 발생:', error);
-    return true; // 오류 발생 시 중복으로 처리
+    return true;
   }
 };
 
@@ -118,14 +118,14 @@ function MyPage() {
 const handleUpdateEmail = async () => {
   try {
     await updateEmail(newEmail);
-    setNewEmail(''); // 이메일 변경 후 입력 필드를 초기화합니다.
+    setNewEmail('');
   } catch (error) {
     console.error('이메일 주소 변경 중 오류가 발생했습니다:', error);
   }
   };
   
   const handleOutProfile = async () => {
-  alert('아직 구현되지 않았습니다ㅠ');
+  alert('공사중입니다');
 };
 
   return (

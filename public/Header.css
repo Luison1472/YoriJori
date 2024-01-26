@@ -16,7 +16,7 @@
     margin-left: 20px;
     font-size: 30px;
     font-weight: bold;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .InMyPage img {
@@ -26,7 +26,7 @@
 }
 
 .mainpg_header {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 116, 56);
     border-radius: 20px;
     width: 340px;
     margin-left: 25px;
@@ -42,7 +42,7 @@
     height: 25px;
     align-items: center;
     text-decoration: none;
-    color: black;
+    color: rgb(255, 255, 255);
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 17px;
