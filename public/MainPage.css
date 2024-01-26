@@ -286,7 +286,7 @@
 }
 
 button:hover {
-    background-color: #a993ff;
+    cursor: pointer;
 }
 
 select {
