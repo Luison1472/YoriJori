@@ -83,10 +83,10 @@ function Login() {
         <div className="login_box">
           <button className="login_btn" onClick={handleLogin}>입장</button>
           <Link to="/SignIn"><button className="join_btn" type="button">회원가입</button></Link>
+        </div>
         <button className="google_btn" onClick={handleGoogleLogin}>
           <img src="/public/img/google_login.png" alt="구글 로그인" />
         </button>
-        </div>
       </form>
     </>
   );
