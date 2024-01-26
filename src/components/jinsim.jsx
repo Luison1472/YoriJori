@@ -9,7 +9,7 @@ import Header from './Header.jsx';
 
 import { fetchPosts } from '/src/components/firebase-utils.js';
 
-const jinsim = () => {
+const Jinsim = () => {
 const { isUserLoggedIn } = useContext(UserContext); 
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -113,4 +113,4 @@ const { isUserLoggedIn } = useContext(UserContext);
   );
 };
 
-export default jinsim;
+export default Jinsim;
