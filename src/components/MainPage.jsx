@@ -79,7 +79,7 @@ function MainPage() {
         <div className="notice">
           <p>공지사항</p>
           <button className="write_btn" onClick={handleWriteButtonClick}>
-            <img src="/public/img/write.png" alt="작성" />
+            <img src="./public/img/write.png" alt="작성" />
           </button>
         </div>
         <div className="post-header">
