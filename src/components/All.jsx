@@ -255,7 +255,7 @@ const All = () => {
        {showSearchResults && filteredPosts.length > 0 && (
         <div className="result-box">
           <ul className="search-results">
-           {filteredPosts.slice(0, 6).map((post, index) => (
+           {filteredPosts.slice(0, 4).map((post, index) => (
               <li key={post.id}>
                 <Link to={`/${post.category ? post.category : 'Notice'}/${post.id}`}>
                   <p>{post.title}</p>

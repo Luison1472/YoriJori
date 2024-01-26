@@ -12,7 +12,7 @@
 
 .all-posts {
     width: 300px;
-    height: 450px;
+    height: 530px;
     background-color: rgb(255, 255, 255);
     margin: 0px auto;
     border: 3px solid #000000;
@@ -258,7 +258,7 @@
 .search-form {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .search-form-box {
@@ -301,6 +301,7 @@ select {
 .result-box {
     background-color: white;
     width: 376px;
+    height: 160px;
     margin-left: 8px;
     border-radius: 20px;
 }
