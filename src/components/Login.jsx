@@ -84,7 +84,7 @@ function Login() {
           <button className="login_btn" onClick={handleLogin}>입장</button>
           <Link to="/SignIn"><button className="join_btn" type="button">회원가입</button></Link>
         <button className="google_btn" onClick={handleGoogleLogin}>
-          <img src="/public/img/web_light_rd_SI@1x.png" alt="구글 로그인" />
+          <img src="/public/img/google_login.png" alt="구글 로그인" />
         </button>
         </div>
       </form>
