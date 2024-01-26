@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import '/public/yamae.css';
-import { UserContext } from './UserContext';
+import { UserContext } from './UserContext.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import PostItem from '/src/components/PostItem.jsx';
@@ -9,7 +9,7 @@ import Header from './Header.jsx';
 
 import { fetchPosts } from '/src/components/firebase-utils.js';
 
-const Jinsim = () => {
+const jinsim = () => {
 const { isUserLoggedIn } = useContext(UserContext); 
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -113,4 +113,4 @@ const { isUserLoggedIn } = useContext(UserContext);
   );
 };
 
-export default Jinsim;
+export default jinsim;
