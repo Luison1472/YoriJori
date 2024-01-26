@@ -40,7 +40,7 @@ const yamaeNoticePage = () => {
       if (postDocSnap.exists()) {
         const postData = postDocSnap.data();
 
-        // 방문수가 없을 경우 초기화
+       
         const views = postData.views || 0;
          await updateDoc(postDocRef, { views: views + 1 });
         setPost({
@@ -173,7 +173,7 @@ const yamaeNoticePage = () => {
     <>
       <Header handleMyPageClick={handleMyPageClick} handleLogout={handleLogout} />
       <div className="notice_header">
-        <p>야매요리</p>
+        <p>야매 게시판</p>
         <div className="hr1">
         </div>
       </div>

@@ -17,7 +17,6 @@
     display: block;
     font-size: 20px;
     margin: 3px 3px;
-    font-weight: bold;
 }
 
 .notice-content p:nth-child(2) {
@@ -71,11 +70,14 @@
 .com_name {
     grid-area: nick;
     padding-left: 13px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 
 .com_content {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .com_name,
@@ -101,6 +103,7 @@ h3 {
     margin: 4px;
     margin-left: 13px;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .comment-form input {

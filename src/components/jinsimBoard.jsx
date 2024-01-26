@@ -33,6 +33,12 @@ function jinsimBoard() {
     return;
   }
 
+  // 제목과 내용이 비어있는지 확인
+  if (!title || !content) {
+    alert('제목과 내용을 모두 입력해주세요.');
+    return;
+  }
+
   try {
     const docRef = await addDoc(collection(db, 'jinsim'), {
       nickname,
@@ -103,7 +109,14 @@ function jinsimBoard() {
 
     const postData = [];
     querySnapshot.forEach((doc) => {
-      postData.push({ id: doc.id, ...doc.data() });
+      const data = doc.data();
+      // 이미지 URL이 있는지 확인하고 적절히 데이터 생성
+      if (data.content.includes('img')) {
+        postData.push({ id: doc.id, ...data });
+      } else {
+        // 텍스트만 작성된 경우에는 빈 이미지 URL로 처리
+        postData.push({ id: doc.id, ...data, imageURL: '' });
+      }
     });
 
     setPosts(postData);

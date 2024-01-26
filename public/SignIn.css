@@ -82,3 +82,24 @@ input[type="text"] {
 .error p {
     padding-right: 5px;
 }
+
+.in_profile {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.in_profile input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.profile_intro {
+    font-size: 25px;
+    margin: 15px 0px;
+}

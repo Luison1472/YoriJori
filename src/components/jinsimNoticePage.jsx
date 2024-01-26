@@ -40,7 +40,7 @@ const jinsimNoticePage = () => {
       if (postDocSnap.exists()) {
         const postData = postDocSnap.data();
 
-        // 방문수가 없을 경우 초기화
+       
         const views = postData.views || 0;
         await updateDoc(postDocRef, { views: views + 1 });
         setPost({
@@ -184,7 +184,7 @@ const jinsimNoticePage = () => {
       )}
 
         <div className="comments-section">
-        <h3>전체댓글 ({comments.length}) 방문수({post ? post.views : 0})</h3>
+        <h3>전체댓글 ({comments.length}) 방문수({post ? post.views : 1})</h3>
        <div className="comments-container">
           <div className="comments-list">
             {comments

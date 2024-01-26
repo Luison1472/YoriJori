@@ -19,7 +19,6 @@ function yamaeBoard() {
   const navigate = useNavigate();
 
    useEffect(() => {
-    // 사용자가 닉네임을 설정했다면 자동으로 채우기
     if (user && user.displayName) {
       setNickname(user.displayName);
     }

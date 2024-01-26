@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Header from './Header.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
+import { UserContext } from './UserContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { serverTimestamp, collection,updateDoc ,doc, getDoc, query, where,getDocs, addDoc} from 'firebase/firestore';  // query, where, getDocs 추가
 import { db } from '/src/firebase-config';
@@ -18,7 +19,8 @@ const NoticePage = () => {
   const [newComment, setNewComment] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
+  const { isUserLoggedIn } = useContext(UserContext); 
+  
   const calculateTotalPages = (totalComments) => {
     return Math.ceil(totalComments / PAGE_SIZE);
   };
@@ -90,6 +92,8 @@ const NoticePage = () => {
     fetchComments();
     getViews();
   }, [postId]);
+
+  
 
  const getViews = async () => {
   try {

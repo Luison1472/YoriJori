@@ -29,7 +29,7 @@ function PostItem({ post, showImage, index, nicknameFirst }) {
         </>
       )}
       
-      {showImage && post.content && post.content.includes('<img') && (
+      {showImage&&post.content && (
         <div className="img_content" dangerouslySetInnerHTML={{ __html: post.content }} />
       )}
     </div>

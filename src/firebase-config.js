@@ -17,8 +17,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 export { db, app, auth, storage };
-  
-  export const fetchPosts = async (collectionName) => {
+
+export const fetchPosts = async (collectionName) => {
   try {
     const collectionRef = collection(db, collectionName);
     const collectionSnapshot = await getDocs(collectionRef);
@@ -42,7 +42,7 @@ export const signUpWithEmailAndPassword = async (email, password) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     return userCredential.user;
   } catch (error) {
-
+    
     if (error.code === 'auth/email-already-in-use') {
       throw new Error('이미 사용 중인 이메일 주소입니다.');
     } else if (error.code === 'auth/invalid-email') {

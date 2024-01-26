@@ -1,0 +1,68 @@
+.myPage_profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 이미지와 정보를 수직으로 정렬하기 위해 */
+}
+
+.my_profile {
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.myPage_profile img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.myPage_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 사용자 정보를 수직으로 정렬하기 위해 */
+    width: 500px;
+}
+
+.myPage_nick,
+.myPage_email {
+    margin: 10px 0;
+    font-size: 30px;
+}
+
+.profile_change_btn {
+    background-color: rgb(190, 116, 255);
+    border: none;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+}
+
+.profile_change_btn button {
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.profileOut_btn {
+    background-color: rgb(190, 116, 255);
+    border: none;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+
+.profileOut_btn button {
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    cursor: pointer;
+}

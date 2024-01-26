@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext,  useState, useEffect } from 'react';
 import { collection, getDocs, query, orderBy} from 'firebase/firestore';
 import { db } from '/src/firebase-config';
 import Header from './Header.jsx';
-import { Link } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth';
+import { Link,useNavigate } from 'react-router-dom';
 import PostItem from '/src/components/PostItem.jsx';
 import '/public/MainPage.css';
 import Pagination from '/src/components/Pagination.jsx';
+import { UserContext } from './UserContext';
 
 
 const All = () => {
@@ -13,11 +15,12 @@ const All = () => {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const postsPerPage = 13;
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [searchOption, setSearchOption] = useState('title');
   const [sortOption, setSortOption] = useState('latest');
-
+  const { isUserLoggedIn } = useContext(UserContext);
   const handleSortOptionChange = (option) => {
     setSortOption(option);
   };
