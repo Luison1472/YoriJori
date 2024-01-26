@@ -80,7 +80,7 @@ const { isUserLoggedIn } = useContext(UserContext);
         <div className="yamae_notice">
           <p>자유게시판</p>
           <button className="yamae_write_btn" onClick={handleWriteButtonClick}>
-            <img src="./public/img/write.png" alt="작성" />
+            <img src="/public/img/write.png" alt="작성" />
           </button>
         </div>
         <div className="yamae_post-header">
