@@ -1,21 +1,10 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "headers": [
-      {
-        "source": "**/*.@(js|jsx)",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "text/javascript"
-          }
-        ]
-      }
     ]
   }
 }

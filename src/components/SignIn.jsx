@@ -75,7 +75,7 @@ function SignIn() {
    <>
       <form className="form_bg">
         <p className="login_title">요리조리<br/>Test.version</p>
-        <p className="login_join">회원가입</p>
+        <p className="signin_join">회원가입</p>
         <div className="in_profile">
           {profilePicture ? (
             <img 
@@ -115,7 +115,7 @@ function SignIn() {
           <Link to="/"><button className="go_sign_btn" type="button">로그인<br/>하러가기</button></Link>
         </div>
         <button className="google_btn" onClick={handleGoogleLogin}>
-          <img src="/public/img/google_login.png" alt="구글 로그인" />
+          <img src="./public/img/google_login.png" alt="구글 로그인" />
         </button>
       </form>
     </>
