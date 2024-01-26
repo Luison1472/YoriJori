@@ -10,7 +10,7 @@ import { UserProvider } from './components/UserContext.jsx';
 import MyPage from './components/myPage.jsx';
 import Yamae from './components/yamae.jsx';
 import Jinsim from './components/jinsim.jsx';
-import Jayou from './components/Jayou.jsx';
+import Jayou from './components/jayou.jsx';
 import All from './components/All.jsx';
 
 import YamaeBoard from './components/yamaeBoard.jsx';
