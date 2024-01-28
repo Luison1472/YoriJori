@@ -15,6 +15,8 @@ function MyPage() {
   const [nicknameError, setNicknameError] = useState('');
   const navigate = useNavigate();
   const auth = getAuth();
+  const storage = getStorage();
+  const [userInfo, setUserInfo] = useState(null);
   const db = getFirestore();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -46,7 +48,7 @@ function MyPage() {
   }
 };
 
-  const [userInfo, setUserInfo] = useState(null);
+  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {

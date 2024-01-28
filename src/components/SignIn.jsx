@@ -60,16 +60,30 @@ function SignIn() {
   };
 
   function handleGoogleLogin() {
-    const provider = new GoogleAuthProvider(); // provider 구글 설정
-    signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
-      .then((data) => {
-        // data 사용 및 처리
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      setUserData({
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        googleUser: true // 구글 로그인 사용자 여부 플래그 추가
       });
-  }
+
+      // 구글 로그인 사용자의 경우 프로필 사진 업데이트
+      if (user.photoURL) {
+        updateProfile(user, {
+          photoURL: user.photoURL
+        });
+      }
+
+      alert("구글 로그인 완료");
+      navigate('/MainPage');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
   return (
    <>

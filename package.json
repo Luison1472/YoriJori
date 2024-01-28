@@ -25,6 +25,7 @@
     "@ckeditor/ckeditor5-paste-from-office": "^40.2.0",
     "@ckeditor/ckeditor5-react": "^6.2.0",
     "@firebase/storage": "^0.12.0",
+    "ckeditor5": "^41.0.0",
     "firebase": "^10.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

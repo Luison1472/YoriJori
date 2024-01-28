@@ -12,17 +12,21 @@ function Login() {
 
   // 구글 로그인
   function handleGoogleLogin() {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((data) => {
-        setUserData(data.user);
-        alert("구글 로그인 완료");
-        navigate('/MainPage');
-      })
-      .catch((err) => {
-        console.log(err);
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      setUserData({
+        displayName: user.displayName,
+        photoURL: user.photoURL,
       });
-  }
+      alert("구글 로그인 완료");
+      navigate('/MainPage');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
   // 이메일, 비밀번호 로그인
   function handleAnonymousLogin() {

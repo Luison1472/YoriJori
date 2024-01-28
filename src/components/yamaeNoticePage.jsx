@@ -194,7 +194,7 @@ const yamaeNoticePage = () => {
               ))}
           </div>
           <div className="comment_pagination">
-            {Array.from({ length: totalPages }, (_, index) => index + 0).map(
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
               (page) => (
                 <button
                   key={page}
