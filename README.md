@@ -37,8 +37,9 @@ npm install @ckeditor/ckeditor5-list 40.2.0
 npm install @ckeditor/ckeditor5-paste-from-office 40.2.0
 npm install @ckeditor/ckeditor5-react 6.2.0
 
-#프로젝트 실행
-npm run dev
+#build 후 firaebase 호스팅 실행
+npm run build
+firebase deploy
 ```
 
 ## 프로젝트 구성도
@@ -46,6 +47,7 @@ npm run dev
 YoriJori/
 |-- ckeditor5/
 |-- node_modules/
+|-- dist/
 |-- public/
 |   |-- css/
 |       |-- style.css
