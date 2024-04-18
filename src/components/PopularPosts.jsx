@@ -10,35 +10,35 @@ const PopularPosts = () => {
 
     useEffect(() => {
         const fetchPopularPosts = async () => {
-            try {
-                const postsCollection = collection(db, 'posts');
-                const yamaeCollection = collection(db, 'yamae');
-                const jinsimCollection = collection(db, 'jinsim');
-                const jayouCollection = collection(db, 'jayou');
+    try {
+        const postsCollection = collection(db, 'posts');
+        const yamaeCollection = collection(db, 'yamae');
+        const jinsimCollection = collection(db, 'jinsim');
+        const jayouCollection = collection(db, 'jayou');
 
-                const postsQuery = query(postsCollection, orderBy('views', 'desc'), limit(3));
-                const yamaeQuery = query(yamaeCollection, orderBy('views', 'desc'), limit(3));
-                const jinsimQuery = query(jinsimCollection, orderBy('views', 'desc'), limit(2));
-                const jayouQuery = query(jayouCollection, orderBy('views', 'desc'), limit(2));
+        const postsQuery = query(postsCollection, orderBy('views', 'desc'), limit(3));
+        const yamaeQuery = query(yamaeCollection, orderBy('views', 'desc'), limit(3));
+        const jinsimQuery = query(jinsimCollection, orderBy('views', 'desc'), limit(2));
+        const jayouQuery = query(jayouCollection, orderBy('views', 'desc'), limit(2));
 
-                const postsSnapshot = await getDocs(postsQuery);
-                const yamaeSnapshot = await getDocs(yamaeQuery);
-                const jinsimSnapshot = await getDocs(jinsimQuery);
-                const jayouSnapshot = await getDocs(jayouQuery);
+        const postsSnapshot = await getDocs(postsQuery);
+        const yamaeSnapshot = await getDocs(yamaeQuery);
+        const jinsimSnapshot = await getDocs(jinsimQuery);
+        const jayouSnapshot = await getDocs(jayouQuery);
 
-                const postsData = postsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-                const yamaeData = yamaeSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-                const jinsimData = jinsimSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-                const jayouData = jayouSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        const postsData = postsSnapshot.docs.map((doc) => ({ id: doc.id, category: 'Notice', ...doc.data() }));
+        const yamaeData = yamaeSnapshot.docs.map((doc) => ({ id: doc.id, category: 'yamaeNotice', ...doc.data() }));
+        const jinsimData = jinsimSnapshot.docs.map((doc) => ({ id: doc.id, category: 'jinsimNotice', ...doc.data() }));
+        const jayouData = jayouSnapshot.docs.map((doc) => ({ id: doc.id, category: 'jayouNotice', ...doc.data() }));
 
-                const mergedData = [...postsData, ...yamaeData, ...jinsimData, ...jayouData];
-                const sortedData = mergedData.sort((a, b) => b.views - a.views).slice(0, 10);
+        const mergedData = [...postsData, ...yamaeData, ...jinsimData, ...jayouData];
+        const sortedData = mergedData.sort((a, b) => b.views - a.views).slice(0, 10);
 
-                setPopularPosts(sortedData);
-            } catch (error) {
-                console.error('인기 게시물을 불러오는 동안 오류가 발생했습니다:', error);
-            }
-        };
+        setPopularPosts(sortedData);
+    } catch (error) {
+        console.error('인기 게시물을 불러오는 동안 오류가 발생했습니다:', error);
+    }
+};
 
         fetchPopularPosts();
     }, []);
@@ -57,7 +57,7 @@ const PopularPosts = () => {
             <div className="popular-list">
                 {popularPosts.map((post, index) => (
                     <li key={post.id}>
-                        <Link to={`/Notice/${post.id}`}>
+                        <Link to={`/${post.category ? post.category : 'Notice'}/${post.id}`}>
                             <PostItem key={post.id} index={index + 1} post={post} showImage={false} nicknameFirst={true} />
                         </Link>
                     </li>

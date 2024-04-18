@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext,useEffect, useState } from 'react';
 import Header from './Header.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import { serverTimestamp, collection,updateDoc ,doc, getDoc, query, where,getDocs, addDoc} from 'firebase/firestore';  // query, where, getDocs 추가
 import { db } from '/src/firebase-config';
+import { UserContext } from './UserContext';
 import PostItem from '/src/components/PostItem.jsx';
 import '/public/NoticePage.css';
 import Comment from '/src/components/Comment.jsx';
@@ -14,7 +15,8 @@ const yamaeNoticePage = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
-  const [comments, setComments] = useState([]); 
+  const [comments, setComments] = useState([]);
+  const { isUserLoggedIn } = useContext(UserContext);
   const [newComment, setNewComment] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);

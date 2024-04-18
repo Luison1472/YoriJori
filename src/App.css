@@ -1,5 +1,5 @@
 #root {
-  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-family: "GangwonEduSaeeum_OTFMediumA";
 }
 
 body {
@@ -16,8 +16,6 @@ body {
 
 .LoginPage_bg {
   background-color: #fff3c1;
-  border: 1px solid #6a6a6a;
-  border-radius: 20px;
 }
 
 .MainPage_bg {
@@ -32,8 +30,6 @@ body {
   background-color: #fff3c1;
   width: 393px;
   height: 852px;
-  border: 1px solid #6a6a6a;
-  border-radius: 20px;
 }
 
 html {
@@ -42,8 +38,9 @@ html {
 }
 
 @font-face {
-  font-family: 'GangwonEduSaeeum_OTFMediumA';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
+  font-family: "GangwonEduSaeeum_OTFMediumA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }

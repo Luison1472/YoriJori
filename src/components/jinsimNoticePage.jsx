@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext,useEffect, useState } from 'react';
 import Header from './Header.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
+import { UserContext } from './UserContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { serverTimestamp, collection,updateDoc ,doc, getDoc, query, where,getDocs, addDoc} from 'firebase/firestore';  // query, where, getDocs 추가
 import { db } from '/src/firebase-config';
@@ -11,6 +12,7 @@ import Comment from '/src/components/Comment.jsx';
 const PAGE_SIZE = 8;
 
 const jinsimNoticePage = () => {
+  const { isUserLoggedIn } = useContext(UserContext);
   const { postId } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
