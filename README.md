@@ -4,7 +4,10 @@
 
 ### 프로젝트 세부내용
 
-[블로그 바로가기] //(작성중)//
+
+### 프로젝트 세부내용
+[블로그 참고]
+<a href="https://blog.naver.com/mingcoding" target="_blank"><img src="https://img.shields.io/badge/N-naverBlog%20-%20naverblog" /></a>
 
 ## 개발 Stack
 
